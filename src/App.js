@@ -7,7 +7,10 @@ function App() {
 		<div>
 			<h1>React App</h1>
 			<UserConfigBox />
-			<Button text="Battle!" onClick={onclick} />
+			<br />
+			<Button text="Battle!" onClick={onclick} fontSize="2rem" width="370px" height="70px" />
+			<br />
+			<Button text="Add Player +" onClick={onclick} fontSize="20px" width="250px" height="45px" />
 		</div>
 	);
 }
