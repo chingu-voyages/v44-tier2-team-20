@@ -1,25 +1,19 @@
 import React from 'react';
-import Input from '../Input/Input';
-import Slider from '../Slider/Slider';
-import Dropdown from '../Dropdown/Dropdown';
-import styles from './UserConfigBox.module.css';
 
-const UserConfigPanel = () => {
+import Button from '../Button/Button';
+import OpaqueBackground from '../OpaqueBackground/OpaqueBackground';
+import UserSelection from '../UserSelection/UserSelection';
+const UserConfigBox = () => {
 	return (
-		<div className={styles.wrapper}>
-			<div className={styles.container}>
-				<div>
-					<Input label="Name" />
-					<Slider label="Speed" />
-				</div>
-				<div className={styles.dropdownContainer}>
-					<Dropdown label="Value" />
-					<Dropdown label="Direction" />
-					<Dropdown label="Operation" />
-				</div>
-			</div>
+		<div>
+			<OpaqueBackground>
+				<Button text="Add Player +" height="45px" width="250px" fontSize="20px" onClick={() => console.log('Clicked')} />
+				<UserSelection />
+
+				<Button text="Battle!" changedText="STOP" width="370px" onClick={() => console.log('Clicked')} />
+			</OpaqueBackground>
 		</div>
 	);
 };
 
-export default UserConfigPanel;
+export default UserConfigBox;

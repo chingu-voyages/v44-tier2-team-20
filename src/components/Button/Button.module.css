@@ -11,44 +11,16 @@
 	align-items: center;
 	position: relative;
 	overflow: hidden;
-}
-
-/* Button Hover Animation Left Cover */
-.container::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 50%;
-	height: 100%;
-	background-color: #333;
-	transition: all 0.5s ease;
-	transform: translateX(-100%);
-}
-
-/* Button Hover Animation Right Cover*/
-.container::after {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 50%;
-	height: 100%;
-	background-color: #333;
-	transition: all 0.5s ease;
-	transform: translateX(200%);
+	padding: 8px 16px;
 }
 
 /*  Button Text */
 .text {
-	z-index: 2;
 	font-size: 30px;
 }
 
 /*  Button Animation */
-.container:hover::before {
-	transform: translateX(0%);
-}
-.container:hover::after {
-	transform: translateX(100%);
+.container:hover {
+	background: #333;
+	box-shadow: 0 0 10px #000;
 }
