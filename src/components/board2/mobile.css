@@ -1,0 +1,47 @@
+/* MOBILE TEST */
+
+body {
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    background-image: url(./background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.board {
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    border: 2px solid black;
+    width: 100%;
+    max-width: 500px; /* set maximum width for larger screens */
+    height: 0;
+    padding-bottom: 100%; /* maintain aspect ratio */
+    position: relative;
+    margin: 20px 0; /* add margin for spacing */
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.boardrow {
+    display: flex;
+    flex-wrap: wrap; /* allow squares to wrap on smaller screens */
+    width: 100%;
+    max-width: 600px; /* set maximum width for larger screens */
+}
+
+.square {
+    width: 20%; /* adjust size for smaller screens */
+    padding-bottom: 20%; /* maintain aspect ratio */
+    border: 1px solid black;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.4);
+    font-size: 1.5rem; /* adjust font size for smaller screens */
+}

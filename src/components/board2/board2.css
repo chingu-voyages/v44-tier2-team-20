@@ -1,0 +1,52 @@
+
+
+#gameboard{
+    display: flex;
+    border: 1px solid black;
+    cursor: grab;
+    
+    
+}
+
+.square {
+    width: 120px;
+    height: 120px;
+    border: 0.5px solid black;
+    border-radius: 5px;
+   
+}
+
+.brown {
+    background-color: rgb(149, 41, 41);
+}
+
+.tan {
+    background-color: rgba(227, 227, 29, 0.246);
+}
+
+#info {
+    height: 30px;
+}
+
+.highlight {
+    background-color: #9da4d0;
+}
+
+.target {
+    border: solid 10px rgb(155, 155, 51);
+    box-sizing: border-box;
+}
+
+.chess-piece, .chess-piece-pawn {
+    height: 115px;
+    width: 115px;
+}
+
+.word {
+    color: rgb(149, 41, 41);
+        margin: auto;
+        
+        font: 700 normal 2.5em 'tahoma';
+        text-shadow: 5px 2px #222324, 2px 4px #222324, 3px 5px #222324;
+      
+}
