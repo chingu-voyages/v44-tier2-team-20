@@ -13,9 +13,9 @@ const UserSelection = () => {
 					<Slider label="Speed" />
 				</div>
 				<div className={styles.dropdownContainer}>
-					<Dropdown label="Value" />
-					<Dropdown label="Direction" />
-					<Dropdown label="Operation" />
+					<Dropdown label="Value" options={[0, 1]} />
+					<Dropdown label="Direction" options={['North', 'South', 'East', 'West']} />
+					<Dropdown label="Operation" options={['AND', 'OR', 'NOR', 'NOT']} />
 				</div>
 			</div>
 		</div>
