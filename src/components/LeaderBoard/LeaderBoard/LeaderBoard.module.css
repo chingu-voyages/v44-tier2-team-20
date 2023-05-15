@@ -1,0 +1,34 @@
+.wrapper {
+    box-sizing: border-box;
+    display: block;
+	height: auto;
+	width: 100%;
+}
+
+.wrapper h2 {
+    display: block;
+    font-size: 20px;
+    width: 70px;
+    background-color: rgba(0, 0, 0, 0.2);
+    margin: 0;
+    padding: 8px 18px;
+}
+
+/* Container below the Leaders tab */
+.container {
+    box-sizing: border-box;
+	width: 100%;
+    padding: 8px 18px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.container__headings {
+	display: flex;
+    flex-flow: row nowrap;
+}
+
+.container__headings h3 {
+    padding: 16px 0px 8px 10px;
+    margin: 0;
+    width: 33.3%;
+}
