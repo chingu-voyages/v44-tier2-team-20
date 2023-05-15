@@ -1,0 +1,26 @@
+/* Buttons container */
+.container {
+	cursor: pointer;
+	background: #000;
+	color: #fff;
+	height: 75px;
+	width: 370px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	overflow: hidden;
+	padding: 8px 16px;
+}
+
+/*  Button Text */
+.text {
+	font-size: 30px;
+}
+
+/*  Button Animation */
+.container:hover {
+	background: #333;
+	box-shadow: 0 0 10px #000;
+}
