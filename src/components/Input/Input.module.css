@@ -1,0 +1,18 @@
+.label {
+	color: #fff;
+	display: block;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	margin-bottom: 3px;
+}
+
+.input {
+	border: none;
+	padding-left: 10px;
+	background: #fff;
+	height: 40px;
+	width: 220px;
+	font-size: 1.5rem;
+}
