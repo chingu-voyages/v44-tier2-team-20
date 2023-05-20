@@ -8,7 +8,7 @@
 .wrapper h2 {
     display: block;
     font-size: 20px;
-    width: 70px;
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.2);
     margin: 0;
     padding: 8px 18px;
@@ -31,4 +31,10 @@
     padding: 16px 0px 8px 10px;
     margin: 0;
     width: 33.3%;
+}
+
+@media screen and (max-width: 768px) {
+    .wrapper h2 {
+        width: 50%;
+    }
 }
