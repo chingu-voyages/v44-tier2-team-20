@@ -4,16 +4,16 @@ import BotStatistics from '../BotStatistics/BotStatistics';
 
 const defaultBots = [{
     name: 'Bot1', 
-    wins: 15, 
+    wins: 11, 
     losses: 0
     }, {
     name: 'Bot2', 
-    wins: 15, 
-    losses: 0
+    wins: 17, 
+    losses: 5
     }, {
     name: 'Bot3', 
-    wins: 15, 
-    losses: 0
+    wins: 1, 
+    losses: 10
     }]
 
 const LeaderBoard = ({ bots = defaultBots }) => {
