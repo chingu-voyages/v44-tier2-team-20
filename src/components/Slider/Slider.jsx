@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './Slider.module.css';
+import './Slider.module.css';
 
 const Slider = ({ label }) => {
 	const [slider, setSlider] = useState({
@@ -19,7 +20,7 @@ const Slider = ({ label }) => {
 	return (
 		<div className="range-slider">
 			<p className={styles.label}>{slider.label}</p>
-			<input type="range" min={slider.min} max={slider.max} value={slider.value} onChange={handleSliderChange} className={styles} />
+			<input type="range" min={slider.min} max={slider.max} value={slider.value} onChange={handleSliderChange} />
 		</div>
 	);
 };
