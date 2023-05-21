@@ -1,8 +1,7 @@
 .wrapper {
-    box-sizing: border-box;
     display: block;
 	height: auto;
-	width: 100%;
+	width: 370px;
 }
 
 .wrapper h2 {
@@ -16,7 +15,6 @@
 
 /* Container below the Leaders tab */
 .container {
-    box-sizing: border-box;
 	width: 100%;
     padding: 8px 18px;
     background-color: rgba(0, 0, 0, 0.2);
