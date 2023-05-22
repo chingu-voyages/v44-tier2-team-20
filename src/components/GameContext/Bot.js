@@ -30,6 +30,7 @@ class Bot {
     this.image = image;
   }
 
+  // Method to set binary value
   setBinaryValue(binaryValue) {
     this.binaryValue = binaryValue;
   }
