@@ -21,10 +21,7 @@
     background-color: aqua;
 }
 
-.container__info {
-    grid-area: 2 / 5 / 2 / 5;
-    background-color: rgb(238, 238, 238);
-}
+{/* leaderboard and boolean take the same grid-area */}
 .container__leaderboard {
     position: absolute;
     width: 100%; 
@@ -33,11 +30,12 @@
     background-color: rgb(238, 238, 238);
 }
 
+{/* leaderboard and boolean take the same grid-area */}
 .container__boolean {
     position: absolute;
     width: 100%; 
     height: 100%;
-    grid-area: 2 / 5 / 2 / 5;
+    grid-area: 2 / 5 / 2 / 5; 
     background-color:rgb(238, 238, 238);
 }
 

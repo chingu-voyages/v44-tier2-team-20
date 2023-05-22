@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
-import styles from './AppGrid.module.css'
+import styles from './AppLayout.module.css'
 
-const AppGrid = () => {
+const AppLayout = () => {
   const [containerSize, setContainerSize] = useState({ height: 0, width: 0 });
 
   const containerRef = useRef(null);
@@ -23,24 +23,22 @@ const AppGrid = () => {
   }, []);
   
   useEffect(() => {
-      let n = Math.min(containerSize.height, containerSize.width);
-      squareRef.current.style.height = `${n}px`;
-      squareRef.current.style.width = `${n}px`;
+    let n = Math.min(containerSize.height, containerSize.width);
+    squareRef.current.style.height = `${n}px`;
+    squareRef.current.style.width = `${n}px`;
   });
-
 
   return (
     <div className={styles.container}>
-        <div ref={containerRef}  className={styles.container__arena}>
-          <div ref={squareRef}  className={styles.container__arena_square}>responsive arena that keeps 1:1 ratio</div>
-        </div>
-          {/* both take the same grid-area */}
-        <div className={styles.container__leaderboard}>LeaderBoard</div>
-          <div className={styles.container__boolean}>Boolean</div>
-        <div className={styles.container__users}>Users</div>
-        <div className={styles.container__log}>Battle log</div>
+      <div ref={containerRef}  className={styles.container__arena}>
+        <div ref={squareRef}  className={styles.container__arena_square}>responsive arena that keeps 1:1 ratio</div>
+      </div>
+        {/* both take the same grid-area */}
+      <div className={styles.container__leaderboard}>LeaderBoard</div>
+      <div className={styles.container__users}>Users</div>
+      <div className={styles.container__log}>Battle log</div>
     </div>
   )
 }
 
-export default AppGrid
+export default AppLayout

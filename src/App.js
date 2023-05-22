@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
+import AppLayout from './components/AppLayout/Flex/AppLayout';
 
 function App() {
 	return (
 		<div>
-			<h1>React App</h1>
+			<AppLayout/>
 		</div>
 	);
 }
