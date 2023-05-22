@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useState } from 'react';
 import Bot from './Bot.js'
 
 const GameContext = createContext();
