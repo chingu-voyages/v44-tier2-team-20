@@ -57,8 +57,8 @@ function BatteLog(props){
                </div>
             ))
          }
-
-   return (
+         
+   return window.matchMedia('(max-width: 768px)').matches ? null : ( 
     <div className={styles.wrapper} ref={scrollableElement}>
       <p>Battle Log</p>
          {renderLogs()}
