@@ -1,19 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
-
-import Button from '../Button/Button';
-import OpaqueBackground from '../OpaqueBackground/OpaqueBackground';
-import UserSelection from '../UserSelection/UserSelection';
-const UserConfigBox = () => {
-	return (
-		<div>
-			<OpaqueBackground>
-				<Button text="Add Player +" height="45px" width="250px" fontSize="20px" onClick={() => console.log('Clicked')} />
-				<UserSelection />
-
-				<Button text="Battle!" changedText="STOP" width="370px" onClick={() => console.log('Clicked')} />
-			</OpaqueBackground>
-=======
 import Input from '../Input/Input';
 import Slider from '../Slider/Slider';
 import Dropdown from '../Dropdown/Dropdown';
@@ -33,13 +18,8 @@ const UserConfigPanel = () => {
 					<Dropdown label="Operation" />
 				</div>
 			</div>
->>>>>>> 6ed13e1 (Revert "Revert "added dropdown arrow img to public folder || Created Input, Slide, & …"")
 		</div>
 	);
 };
 
-<<<<<<< HEAD
-export default UserConfigBox;
-=======
 export default UserConfigPanel;
->>>>>>> 6ed13e1 (Revert "Revert "added dropdown arrow img to public folder || Created Input, Slide, & …"")

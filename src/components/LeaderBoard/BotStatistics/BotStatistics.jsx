@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './BotStatistics.module.css';
 
 const BotStatistics = ({ bots }) => {
+    
     const sortedBots = [...bots].sort((a, b) => b.wins - a.wins);
     return (
         <div className={styles.wrapper} data-testid="bot-statistics">

@@ -1,14 +1,14 @@
 import { v4 as uuidv4 } from 'uuid';
 
 class Bot {
-  constructor(name, binaryValue, direction) {
+  constructor(name, binaryValue, direction, wins, losses) {
     this.id = uuidv4();
     this.name = name;
     this.image= image;
     this.binaryValue = binaryValue;
     this.direction = direction
-    this.wins = 0;
-    this.losses = 0;
+    this.wins = wins;
+    this.losses = losses;
   }
 
   // Method to update win/loss counts
