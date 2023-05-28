@@ -4,11 +4,11 @@ import styles from './Input.module.css';
 const Input = ({ label, className }) => {
 	return (
 		<div>
-			<label htmlFor="input" className={styles.label} style={className}>
+			<label htmlFor="input" className={styles.label} style={className ? className : {}}>
 				{label}
 			</label>
 
-			<input className={styles.input} name="input" type="text" />
+			<input className={styles.input} id="input" type="text" />
 		</div>
 	);
 };
