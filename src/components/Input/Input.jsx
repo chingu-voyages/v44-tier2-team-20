@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import styles from './Input.module.css';
 import { GameContext } from '../../context/GameContext/GameContext';
 
+
 const Input = ({ label, className }) => {
 	const { bots, addBot } = useContext(GameContext);
     const [inputValue, setInputValue] = useState('');
@@ -46,9 +47,10 @@ const Input = ({ label, className }) => {
         setInputValue(event.target.value);
       };
 
+
 	return (
 		<div>
-			<label htmlFor="input" className={styles.label} style={className ? className : {}}>
+			<label htmlFor="input" className={styles.label}>
 				{label}
 			</label>
 

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useContext }  from 'react';
 import styles from './LeaderBoard.module.css'
 import BotStatistics from '../BotStatistics/BotStatistics';
+import { GameContext } from '../../../context/GameContext/GameContext';
 
 const defaultBots = [{
     name: 'Bot1', 
@@ -16,7 +17,10 @@ const defaultBots = [{
     losses: 10
     }]
 
-const LeaderBoard = ({ bots = defaultBots }) => {
+const LeaderBoard = () => {
+  const { bots, addBot } = useContext(GameContext);
+
+console.log(bots)
 
   return (
     <div className={styles.wrapper}>

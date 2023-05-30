@@ -20,9 +20,10 @@ const GameProvider = ({ children }) => {
 
   // Function to add a new bot (id generated in class via uuid)
   const addBot = (bot) => {
-    const newBot = new Bot(bot.name, bot.image, bot.binaryValue, bot.direction)
+    const newBot = new Bot(bot.name, bot.binaryValue, bot.direction, bot.wins, bot.losses)
     setBots((prevBots) => [...prevBots, newBot]);
   };
+
 
   // Function to remove a bot
   const removeBot = (botId) => {
