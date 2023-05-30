@@ -1,11 +1,16 @@
 import React from 'react';
 import './App.css';
-import AppLayout from './components/AppLayout/Flex/AppLayout';
+import { GameProvider } from './context/GameContext/GameContext';
+import UserConfigBox from './components/UserConfigBox/UserConfigBox'
+
 
 function App() {
 	return (
 		<div>
-			<AppLayout/>
+			<GameProvider>
+                <UserConfigBox />
+            </GameProvider>
+
 		</div>
 	);
 }
