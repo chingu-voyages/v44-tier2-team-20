@@ -3,24 +3,17 @@ import Bot from './Bot.js'
 
 const GameContext = createContext();
 
-// State for game settings
-const GameProvider = ({ children }) => {
-  const [gameSettings, setGameSettings] = useState({
-      speed: 0, 
-      operator: null,
-  });
 
+const GameProvider = ({ children }) => {
   // State for game state
-  const [gameState, setGameState] = useState({
-      on: false
-  });
+  const [gameState, setGameState] = useState(false);
 
   // State for bots
   const [bots, setBots] = useState([]);
 
   // Function to add a new bot (id generated in class via uuid)
   const addBot = (bot) => {
-    const newBot = new Bot(bot.name, bot.binaryValue, bot.direction, bot.wins, bot.losses)
+    const newBot = new Bot(bot.name, bot.image, bot.binaryValue, bot.operator, bot.direction)
     setBots((prevBots) => [...prevBots, newBot]);
   };
 
@@ -44,11 +37,10 @@ const GameProvider = ({ children }) => {
 
   // Defining the context values
   const contextValue = {
-    gameSettings,
-    setGameSettings,
     gameState,
     setGameState,
     bots,
+    setBots,
     addBot,
     removeBot,
     updateBotStats,
