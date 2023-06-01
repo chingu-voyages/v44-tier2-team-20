@@ -6,12 +6,12 @@ class Bot {
     this.id = uuidv4();
     this.name = name;
     this.image= image;
-    this.labelColor= setLabelColor();
+    this.labelColor= this.setLabelColor();
     this.binaryValue = binaryValue;
     this.operator = operator;
     this.direction = direction;
-    this.coordinates = setCoordinates();
-    this.timestap = Date.now();
+    this.coordinates = this.setCoordinates();
+    this.timestamp = Date.now();
     this.speed = 0;
     this.wins = 0;
     this.losses = 0;
