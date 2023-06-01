@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
 class Bot {
+
   constructor(name, image, binaryValue, operator, direction) {
     this.id = uuidv4();
     this.name = name;

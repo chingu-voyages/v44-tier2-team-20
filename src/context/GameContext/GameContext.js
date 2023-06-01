@@ -17,6 +17,7 @@ const GameProvider = ({ children }) => {
     setBots((prevBots) => [...prevBots, newBot]);
   };
 
+
   // Function to remove a bot
   const removeBot = (botId) => {
     setBots((prevBots) => prevBots.filter((bot) => bot.id !== botId));

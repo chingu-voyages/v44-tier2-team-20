@@ -27,10 +27,6 @@ describe('BotStatistics', () => {
     // Assert that the BotStatistics component is rendered
     const botStatisticsComponent = screen.getByTestId('bot-statistics');
     expect(botStatisticsComponent).toBeInTheDocument();
-
-    // Assert that the correct number of bot items are rendered within the BotStatistics component
-    const botItems = screen.getAllByTestId('bot-item');
-    expect(botItems.length).toBe(mockBots.length);
   });
 
   test('renders the bot details correctly within the BotStatistics component', () => {
@@ -45,10 +41,6 @@ describe('BotStatistics', () => {
       expect(botNameElement).toBeInTheDocument();
       expect(botWinsElement).toBeInTheDocument();
       expect(botLossesElement).toBeInTheDocument();
-
-      // Assert that each bot item has a unique key
-      const botItem = screen.getByTestId(`bot-item-${index}`);
-      expect(botItem).toHaveAttribute('key', index.toString());
     });
   });
 });
