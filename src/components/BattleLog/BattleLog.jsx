@@ -1,68 +1,46 @@
-import React, { useRef, useEffect } from "react"
-import styles from './BattleLog.module.css'
+import React, { useRef, useEffect, useContext } from 'react';
+import { GameContext } from '../../context/GameContext/GameContext';
+import styles from './BattleLog.module.css';
 
-function BatteLog(props){
+function BatteLog(props) {
+	const { battleLogs } = useContext(GameContext);
 
-   const [logs, setLogs] = React.useState([
-      {
-         bots: ['Bot1', 'Bot2'],
-         result: 'Computations'
-      },
-      {
-         bots: ['Bot3', 'Bot2'],
-         result: 'blug blugb robots, bluh bluh won and won and won and won'
-      },
-      {
-         bots: ['Bot1', 'Bot2'],
-         result: 'Computations'
-      },
-      {
-         bots: ['Bot1', 'Bot2'],
-         result: 'Computations'
-      },
-      {
-         bots: ['Bot1', 'Bot2'],
-         result: 'Computations'
-      },
-      {
-         bots: ['Bot1', 'Bot2'],
-         result: 'Computations'
-      },
-      {
-         bots: ['Bot1', 'Bot2'],
-         result: 'Computations'
-      },
-      {
-         bots: ['Bot1', 'Bot2'],
-         result: 'Computations'
-      }
-   ])
+	// creating reference for wrapper to adjust scroll
+	const scrollableElement = useRef(null);
 
-   // creating reference for wrapper to adjust scroll
-   const scrollableElement = useRef(null);
+	// makes the scroll bar head to bottom on first render and with every new log in array so user doesn't have to scroll down for new result
+	useEffect(() => {
+		if (scrollableElement.current) {
+			scrollableElement.current.scrollTop = scrollableElement.current.scrollHeight - scrollableElement.current.clientHeight;
+		}
+	}, [battleLogs]);
 
-   // makes the scroll bar head to bottom on first render and with every new log in array so user doesn't have to scroll down for new result
-   useEffect(() => {
-      if (scrollableElement.current) {
-         scrollableElement.current.scrollTop = scrollableElement.current.scrollHeight - scrollableElement.current.clientHeight;
-      }
-   }, [logs]);
+	// maps logs to wrapper
+	const renderLogs = () => {
+		if (!Array.isArray(battleLogs)) {
+			return null;
+		}
 
-          // maps logs to wrapper
-          const renderLogs = () => {
-            return logs.map((log, index) => (
-               <div key= {index} className={styles.container}>
-                  <p className={styles.bots_txt}>{log.bots[0]} vs {log.bots[1]}</p>
-                  <p className={styles.results_txt}>{log.result}</p>
-               </div>
-            ))
-         }
-         
-   return window.matchMedia('(max-width: 768px)').matches ? null : ( 
-    <div className={styles.wrapper} ref={scrollableElement}>
-      <p>Battle Log</p>
-         {renderLogs()}
-    </div>
-   )
+		return battleLogs.map((log, index) => (
+			<div key={index} className={styles.container}>
+				<p className={styles.results_txt}>
+					{log.bots[0]} vs. {log.bots[1]} | {log.winner === 'tie' ? 'it was a tie' : `${log.winner} wins`}
+				</p>
+				<p className={styles.computations_txt}>
+					{log.bots[0]}: Binary Value = {log.bot1BinaryValue}, Operator = {log.bot1Operator}
+				</p>
+				<p className={styles.computations_txt}>
+					{log.bots[1]}: Binary Value = {log.bot2BinaryValue}, Operator = {log.bot2Operator}
+				</p>
+			</div>
+		));
+	};
+
+	return window.matchMedia('(max-width: 768px)').matches ? null : (
+		<div className={styles.wrapper} ref={scrollableElement}>
+			<p>Battle Log</p>
+			{renderLogs()}
+		</div>
+	);
 }
-export default BatteLog
+export default BatteLog;
