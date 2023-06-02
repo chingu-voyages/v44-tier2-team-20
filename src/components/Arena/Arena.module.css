@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(1, 0.5fr);
+  grid-template-rows: repeat(8, 1fr); 
+}
+
+.bot-container {
+  position: relative;
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  flex: 1;
+  height: 100px;
+  width: 100px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.bot-label {
+  position: absolute;
+  font-weight: 900;
+  padding: 0.5rem 2rem;
+  top: -2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bot-image {
+  max-width: 100%;
+  max-height: 100%;
+}
