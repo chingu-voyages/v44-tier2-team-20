@@ -13,12 +13,22 @@ const GameProvider = ({ children }) => {
 	// State for battle logs
 	const [battleLogs, setBattleLogs] = useState([
 		{
+			// Added these values for testing purposes
 			bots: ['Bot1', 'Bot2'],
 			winner: 'Bot1',
-			bot1BinaryValue: 1, // Add these values for testing
-			bot1Operator: 'AND', // Add these values for testing
-			bot2BinaryValue: 0, // Add these values for testing
-			bot2Operator: 'OR', // Add these values for testing
+			bot1BinaryValue: 1,
+			bot1Operator: 'AND',
+			bot2BinaryValue: 0,
+			bot2Operator: 'OR',
+		},
+		{
+			// Added these values for testing purposes
+			bots: ['Bot1', 'Bot2'],
+			winner: 'Bot1',
+			bot1BinaryValue: 1,
+			bot1Operator: 'AND',
+			bot2BinaryValue: 0,
+			bot2Operator: 'OR',
 		},
 	]);
 

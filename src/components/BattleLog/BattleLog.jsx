@@ -18,12 +18,13 @@ function BatteLog(props) {
 	// maps logs to wrapper
 	const renderLogs = () => {
 		if (!Array.isArray(battleLogs)) {
-			return null; // or some fallback UI
+			return null;
 		}
+
 		return battleLogs.map((log, index) => (
 			<div key={index} className={styles.container}>
 				<p className={styles.results_txt}>
-					{log.bots[0]} battles {log.bots[1]} and {log.winner === 'tie' ? 'it was a tie' : `${log.winner} wins`}
+					{log.bots[0]} vs. {log.bots[1]} | {log.winner === 'tie' ? 'it was a tie' : `${log.winner} wins`}
 				</p>
 				<p className={styles.computations_txt}>
 					{log.bots[0]}: Binary Value = {log.bot1BinaryValue}, Operator = {log.bot1Operator}
