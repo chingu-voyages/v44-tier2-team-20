@@ -35,6 +35,37 @@ const GameProvider = ({ children }) => {
     );
   };
 
+  const checkOutcome = (bot1, bot2) => {
+    // Determine the earliest timestamp
+    const earliestTimestamp = Math.min(bot1.timestamp, bot2.timestamp);
+  
+    const firstBot = bot1.timestamp === earliestTimestamp ? bot1 : bot2; 
+    //bot1 moved first, it's assigned as firstBot
+    const secondBot = bot1.timestamp  === earliestTimestamp ? bot2 : bot1; 
+    //bot1 is assigned to the firstBot, then second bot is bot2
+  
+    // Calculate the result based on the operator
+    let result;
+    if (firstBot.operator === 'AND') {
+      result = firstBot.binaryValue && secondBot.binaryValue;
+    } else if (firstBot.operator === 'OR') {
+      result = firstBot.binaryValue || secondBot.binaryValue;
+    } else if (firstBot.operator === 'NOR') {
+      result = !(firstBot.binaryValue || secondBot.binaryValue);
+    } else if (firstBot.operator === 'XOR') {
+      console.log('xor')
+      result = firstBot.binaryValue !== secondBot.binaryValue;
+      // If the binary values are different, the result is true (1), 
+      // if they are the same, the result is false (0). 
+    } else {
+      result = null; //default result
+    }
+
+    // if outcome is true winner is always the first bot, otherwise it's a tie
+    const outcome = result ? firstBot.name : "tie";
+    return outcome;
+  }
+  
   // Defining the context values
   const contextValue = {
     gameState,
@@ -44,6 +75,7 @@ const GameProvider = ({ children }) => {
     addBot,
     removeBot,
     updateBotStats,
+    checkOutcome
   };
 
   // Provide the context value to children components
