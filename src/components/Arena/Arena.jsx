@@ -121,6 +121,7 @@ function Arena(props) {
 	};
 
 	useEffect(() => {
+		toggleGame();
 		const moveBotWithDelay = (bot) => {
 			const intervalId = setInterval(() => {
 				setTimeout(() => moveBot(bot), 500);
