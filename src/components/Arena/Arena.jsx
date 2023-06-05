@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import { GameContext } from "../GameContext/GameContext";
-import styles from "./arena.module.css";
+import styles from "./Arena.module.css";
 
 function Arena(props) {
   const { bots, setBots, gameState, setGameState, checkOutcome, updateBotStats, removeBot } = useContext(GameContext);
