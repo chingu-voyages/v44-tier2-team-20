@@ -1,9 +1,15 @@
 .container {
   display: flex;
   justify-content: center;
+  min-height: 50vh;
+  width: 100%;
+  background-color: aqua;
 }
 
 .grid-container {
+  background-color: blue;
+  height: 100%;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(1, 0.5fr);
   grid-template-rows: repeat(8, 1fr); 

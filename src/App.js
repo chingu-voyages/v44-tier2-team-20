@@ -1,16 +1,20 @@
 import React from 'react';
-import './App.css';
+import styles from './App.module.css';
 import { GameProvider } from './context/GameContext/GameContext';
-import UserConfigBox from './components/UserConfigBox/UserConfigBox'
-
+import Arena  from './components/Arena/Arena';
+import LeaderBoard from './components/LeaderBoard/LeaderBoard/LeaderBoard'
+import UserConfigBox from './components/UserConfigBox/UserConfigBox';
+import BattleLog from './components/BattleLog/BattleLog';
 
 function App() {
 	return (
-		<div>
+		<div className={ styles["app-container"]}>
 			<GameProvider>
-                <UserConfigBox />
-            </GameProvider>
-
+				<Arena />
+				<LeaderBoard />
+				<UserConfigBox />
+				<BattleLog />
+			</GameProvider>
 		</div>
 	);
 }

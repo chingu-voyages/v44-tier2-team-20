@@ -1,9 +1,9 @@
 import React, {useContext, useEffect, useState} from "react";
-import { GameContext } from "../GameContext/GameContext";
-import styles from "./arena.module.css";
+import { GameContext } from "../../context/GameContext/GameContext";
+import styles from "./Arena.module.css";
 
 function Arena(props) {
-  const { bots, gameState } = useContext(GameContext);
+  const { bots, gameState, setBots } = useContext(GameContext);
   const [matrix, setMatrix] = useState([]);
   const [intervalIds, setIntervalIds] = useState([])
 
