@@ -1,24 +1,17 @@
 import React from 'react';
-import Input from '../Input/Input';
-import Slider from '../Slider/Slider';
-import Dropdown from '../Dropdown/Dropdown';
+import UserSelection from '../UserSelection/UserSelection';
+import OpaqueBackground from '../OpaqueBackground/OpaqueBackground';
+import Button from '../Button/Button';
 import styles from './UserConfigBox.module.css';
 
 const UserConfigPanel = () => {
 	return (
-		<div className={styles.wrapper}>
-			<div className={styles.container}>
-				<div>
-					<Input label="Name" />
-					<Slider label="Speed" />
-				</div>
-				<div className={styles.dropdownContainer}>
-					<Dropdown label="Value" />
-					<Dropdown label="Direction" />
-					<Dropdown label="Operation" />
-				</div>
-			</div>
-		</div>
+		<OpaqueBackground>
+			<UserSelection />
+
+			<UserSelection />
+			<Button />
+		</OpaqueBackground>
 	);
 };
 

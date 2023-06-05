@@ -1,8 +1,7 @@
 import React, { createContext, useState } from 'react';
-import Bot from './Bot.js'
+import Bot from './Bot.js';
 
 const GameContext = createContext();
-
 
 const GameProvider = ({ children }) => {
   // State for game state
@@ -88,6 +87,7 @@ const GameProvider = ({ children }) => {
 
   // Provide the context value to children components
   return <GameContext.Provider value={contextValue}>{children}</GameContext.Provider>;
+
 };
 
-export { GameContext, GameProvider};
+export { GameContext, GameProvider };
