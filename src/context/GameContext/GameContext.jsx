@@ -9,36 +9,7 @@ const GameProvider = ({ children }) => {
   const [gameState, setGameState] = useState(false);
 
   // State for bots
-  const [bots, setBots] = useState([
-    {
-      id: 1,
-      name: 'Bob',
-      image: 'bot01.png',
-      labelColor: 'rgba(0, 0, 255, 0.5)',
-      binaryValue: 1,
-      operator: 'AND',
-      direction: 'North',
-      timestamp: Date.now(),
-      coordinates: { rowIndex: 7, columnIndex: 3 },
-      speed: 100,
-      wins: 2,
-      losses: 1
-    },
-    {
-      id: 2,
-      name: 'NotBob',
-      image: 'bot02.png',
-      labelColor: 'rgba(255, 0, 0, 0.5)',
-      binaryValue: 1,
-      operator: 'AND',
-      direction: 'South',
-      timestamp: Date.now(),
-      coordinates: { rowIndex: 0, columnIndex: 3 },
-      speed: 10,
-      wins: 1,
-      losses: 2
-    }
-  ]);
+  const [bots, setBots] = useState([]);
 
   // Function to add a new bot (id generated in class via uuid)
   const addBot = (bot) => {
