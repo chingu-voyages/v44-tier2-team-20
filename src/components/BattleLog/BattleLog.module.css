@@ -1,64 +1,68 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 .wrapper {
-    background-color: rgba(255, 255, 255, 0.6);
-    font-size: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    width: 20.63vw;
-    height: 16.51vh;
-    overflow-y: scroll;
+	background-color: rgba(255, 255, 255, 0.6);
+	font-size: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	width: 20.63vw;
+	height: 16.51vh;
+	overflow-y: scroll;
 }
 
 .wrapper::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
+	width: 10px;
+	height: 10px;
+}
 
-  .wrapper::-webkit-scrollbar-track {
-    background-color: (255, 255, 255, 0.6);
-  }
-  
-  .wrapper::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.4);
-    border-radius: 5px;
-  }
-  
-  .wrapper::-webkit-scrollbar-thumb:hover {
-    background-color: red;
-  }
+.wrapper::-webkit-scrollbar-track {
+	background-color: (255, 255, 255, 0.6);
+}
+
+.wrapper::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.4);
+	border-radius: 5px;
+}
+
+.wrapper::-webkit-scrollbar-thumb:hover {
+	background-color: red;
+}
 
 .wrapper > p {
-    font-weight: 500;
-    margin-left: 22px;
-    margin-bottom: 0px;
-    margin-top: 18px;
+	font-weight: 500;
+	margin-left: 22px;
+	margin-bottom: 0px;
+	margin-top: 18px;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.4);
-    color: #fff;
-    margin: 10px 8px;
-}
-
-.bots_txt {
-    font-size: 1.25rem;
-    margin-left: 10px;
-    margin-top: 6px;
+	display: flex;
+	flex-direction: column;
+	background-color: rgba(0, 0, 0, 0.4);
+	color: #fff;
+	margin: 10px 8px;
 }
 
 .results_txt {
-    font-size: 1.5rem;
-    font-weight: 900;
-    margin: 5px;
-    padding: 20px;
-    padding-bottom: 30px;
-    align-self: center;
-    justify-self: center;
-} 
+	font-size: 1.2rem;
+	font-weight: 900;
+	margin: 5px;
+	padding: 5px;
+	align-self: center;
+	justify-self: center;
+}
+
+.computations_txt {
+	font-size: 1rem;
+	margin: 0 auto;
+	margin-top: 6px;
+}
+
+.computations_txt:nth-last-child(1) {
+	margin-top: 5px;
+	margin-bottom: 10px;
+}

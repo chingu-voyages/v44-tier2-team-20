@@ -64,17 +64,17 @@ class Bot {
    // Method to set initial coordinates based on direction
   setCoordinates() {
     const directionTable = {
-      'North': (7,3), 
-      'South': (0,3),
-      'East': (3,7),
-      'West': (3,0)
+      'North': { rowIndex: 7, columnIndex: 3 }, 
+      'South': { rowIndex: 0, columnIndex: 3 },
+      'East': { rowIndex: 3, columnIndex: 7 },
+      'West': { rowIndex: 3, columnIndex: 0 }
     }
     return directionTable[this.direction];
   }
 
   // Method to upadte time of bot creation and movement
   updateTimestamp() {
-    this.timestap = Date.now();
+    this.timestamp = Date.now();
   }
   
   // Method to set speed 

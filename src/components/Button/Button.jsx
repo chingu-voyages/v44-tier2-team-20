@@ -1,19 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { GameContext } from '../../context/GameContext/GameContext';
 import styles from './Button.module.css';
 
-const Button = ({ text, changedText, onClick, width, height, fontSize }) => {
-	const [buttonText, setButtonText] = useState(text ? text : 'Button');
+const Button = ({ onClick, width, height, fontSize }) => {
+	const { gameState, setGameState } = useContext(GameContext);
+	const [buttonText, setButtonText] = useState('Button');
+
+	useEffect(() => {
+		if (!gameState) {
+			setButtonText('Battle!');
+		} else {
+			setButtonText('STOP');
+		}
+	}, [gameState]);
 
 	function handleClick() {
-		// Adding in outside functionality to the button
-		if (onClick) {
-			onClick();
-		}
 		// Adding in internal functionality to the button
-		if (buttonText === text) {
-			setButtonText(changedText ? changedText : text);
-		} else {
-			setButtonText(text ? text : 'Button');
+		setGameState(!gameState);
+		if (onClick) {
+			// Adding in outside functionality to the button
+			onClick();
 		}
 	}
 	return (
