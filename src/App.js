@@ -9,7 +9,8 @@ function App() {
 	return (
 		<div>
 			<GameProvider>
-				<Arena />
+				{/* <Arena /> */}
+				<UserConfigBox />
 			</GameProvider>
 		</div>
 	);

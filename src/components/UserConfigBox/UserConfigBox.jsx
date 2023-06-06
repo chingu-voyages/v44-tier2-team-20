@@ -7,9 +7,8 @@ import styles from './UserConfigBox.module.css';
 const UserConfigPanel = () => {
 	return (
 		<OpaqueBackground>
-			<UserSelection />
-
-			<UserSelection />
+			<UserSelection formId={1} />
+			<UserSelection formId={2} />
 			<Button />
 		</OpaqueBackground>
 	);
