@@ -24,10 +24,18 @@ const UserSelection = ({ formId }) => {
 
 	useEffect(() => {
 		if (isFormComplete) {
-			const bot = new Bot(name, `bot-${formId}`, operation, speed, direction, formId);
+			const bot = new Bot();
+			bot.setName(name);
+			bot.setFormId(formId);
+			bot.setImage(`/bot-${Math.floor(Math.random()) * 10}`);
+			bot.setSpeed(Number(speed));
+			bot.setBinaryValue(value);
+			bot.setDirection(direction);
+			bot.setCoordinates(); // Call setCoordinates after setDirection
+			bot.setOperator(operation);
 			addBot(bot);
 		}
-	}, [isFormComplete]);
+	}, [isFormComplete, direction, value, speed, direction, name]);
 
 	return (
 		<div className={styles.wrapper}>

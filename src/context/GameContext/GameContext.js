@@ -12,14 +12,18 @@ const GameProvider = ({ children }) => {
 
 	// Function to add a new bot (id generated outside)
 	const addBot = (bot) => {
-		// Check if bot with the same id already exists
-		const existingBot = bots.find((b) => b.formId === bot.formId);
+		const existingBotIndex = bots.findIndex((b) => b.formId === bot.formId);
 
-		if (!existingBot) {
-			const newBot = new Bot(bot.id, bot.name, bot.image, bot.binaryValue, bot.operator, bot.direction);
-			setBots((prevBots) => [...prevBots, newBot]);
+		if (existingBotIndex !== -1) {
+			// Replace the existing bot with the new bot
+			setBots((prevBots) => {
+				const newBots = [...prevBots];
+				newBots[existingBotIndex] = bot;
+				return newBots;
+			});
 		} else {
-			alert('Bot with this ID has already been submitted.');
+			// Add the new bot
+			setBots((prevBots) => [...prevBots, bot]);
 		}
 	};
 

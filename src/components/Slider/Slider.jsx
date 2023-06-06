@@ -5,8 +5,8 @@ const Slider = ({ label, value, onChange }) => {
 	const handleSliderChange = (event) => {
 		if (onChange) {
 			onChange(event.target.value);
+			console.log(event.target.value);
 		}
-		console.log(event.target.value);
 	};
 
 	return (

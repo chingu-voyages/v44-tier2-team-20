@@ -12,7 +12,8 @@ const Input = ({ label, value, onChange }) => {
 
 	useEffect(() => {
 		const botNames = bots.map((bot) => bot.name);
-		setMatchFound(botNames.includes(value));
+		const nameCount = botNames.filter((botName) => botName === value).length;
+		setMatchFound(nameCount > 1);
 	}, [value, bots]);
 
 	return (

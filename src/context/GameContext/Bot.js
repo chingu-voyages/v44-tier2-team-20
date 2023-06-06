@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
 class Bot {
-	constructor(name, image, binaryValue, operator, direction, formId) {
+	constructor(name, image, binaryValue, operator, speed, direction, formId) {
 		this.id = uuidv4();
 		this.name = name;
 		this.image = image;
@@ -11,7 +11,7 @@ class Bot {
 		this.direction = direction;
 		this.coordinates = this.setCoordinates();
 		this.timestamp = Date.now();
-		this.speed = 0;
+		this.speed = speed;
 		this.wins = 0;
 		this.losses = 0;
 		this.formId = formId;
@@ -29,6 +29,11 @@ class Bot {
 	// Method to update name
 	setName(name) {
 		this.name = name;
+	}
+
+	// method to set formId
+	setFormId(formId) {
+		this.formId = formId;
 	}
 
 	// Method to update image
@@ -68,7 +73,7 @@ class Bot {
 			East: { rowIndex: 3, columnIndex: 7 },
 			West: { rowIndex: 3, columnIndex: 0 },
 		};
-		return directionTable[this.direction];
+		this.coordinates = directionTable[this.direction];
 	}
 
 	// Method to upadte time of bot creation and movement
