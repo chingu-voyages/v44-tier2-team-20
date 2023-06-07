@@ -1,20 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Dropdown.module.css';
 
 const defaultOptions = ['Option 1', 'Option 2', 'Option 3'];
 
-const Dropdown = ({ label, options = defaultOptions }) => {
+const Dropdown = ({ label, options = defaultOptions, value, onChange }) => {
+	const [selectedOption, setSelectedOption] = useState(value);
+	const handleDropdownChange = (option) => {
+		setSelectedOption(option);
+		onChange(option);
+	};
+
 	return (
-		<div class={styles.dropdown}>
+		<div className={styles.dropdown}>
 			<div className={styles.downArrow}>
-				<button class={styles.dropbtn}>
-					{label}
+				<button className={styles.dropbtn}>
+					{selectedOption !== null && selectedOption !== undefined ? selectedOption : label}
 					<img className={styles.image} src="./DownArrow.png" />
 				</button>
 			</div>
-			<div class={styles.dropdownContent}>
+			<div className={styles.dropdownContent}>
 				{options.map((option) => {
-					return <a href="#">{option}</a>;
+					return (
+						<a key={option} onClick={() => handleDropdownChange(option)}>
+							{option}
+						</a>
+					);
 				})}
 			</div>
 		</div>

@@ -1,25 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Slider.module.css';
 
-const Slider = ({ label }) => {
-	const [slider, setSlider] = useState({
-		max: 100,
-		min: 0,
-		value: 50,
-		label: label || '',
-	});
-
-	function handleSliderChange(event) {
-		setSlider({
-			...slider,
-			value: event.target.value,
-		});
-	}
+const Slider = ({ label, value, onChange }) => {
+	const handleSliderChange = (event) => {
+		if (onChange) {
+			onChange(event.target.value);
+			console.log(event.target.value);
+		}
+	};
 
 	return (
 		<div className="range-slider">
-			<p className={styles.label}>{slider.label}</p>
-			<input type="range" min={slider.min} max={slider.max} value={slider.value} onChange={handleSliderChange} className={styles} />
+			<p className={styles.label}>{label}</p>
+			<input type="range" min="0" max="100" value={value} onChange={(e) => handleSliderChange(e)} className={styles} />
 		</div>
 	);
 };
