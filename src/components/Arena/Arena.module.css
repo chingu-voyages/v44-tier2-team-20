@@ -1,13 +1,11 @@
 .container {
   display: flex;
   justify-content: center;
-
   height: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  /* background-color: rgb(221, 185, 255); */
 }
 
 .grid-container {
@@ -60,43 +58,6 @@ and (max-width: 768px) {
     height: 50px;
     width: 50px;
   }
-
-    /* .container__arena {
-        width: 100%;
-        max-height: 400px;
-    }
-
-    .container__arena_square {
-        background-color: aqua;
-    }
-    
-    .container__leaderboard {
-        width: 100%;
-        order: -1;
-        background-color: rgb(221, 221, 221);
-    }
-
-    .container__log {
-        width: 100%;
-        position: absolute;
-        background-color: rgb(221, 221, 221);
-    }
-
-    .container__users {
-        width: 100%;
-        background-color: rgb(221, 221, 221);
-    } */
-}
-
-/* Tablets portrait */
-@media only screen 
-  and (min-width: 768px) 
-  and (max-width: 1024px) 
-  and (orientation: portrait) {
-    /* .cell {
-      height: 90px; works
-      width: 90px;
-    } */
 }
 
 /* Tablets landscape */
@@ -108,17 +69,6 @@ and (max-width: 768px) {
       height: 45px;
       width: 45px;
     }
-}
-
-/* Smartphones landscape */
-@media only screen 
-  and (min-width: 375px) 
-  and (max-width: 812px) 
-  and (orientation: landscape) { 
-    /* .cell {
-      height: 30px;
-      width: 30px;
-    } */
 }
 
 /* smaller smartphones*/
