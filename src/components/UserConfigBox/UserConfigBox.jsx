@@ -6,11 +6,14 @@ import styles from './UserConfigBox.module.css';
 
 const UserConfigPanel = () => {
 	return (
-		<OpaqueBackground>
-			<UserSelection formId={1} />
-			<UserSelection formId={2} />
-			<Button />
-		</OpaqueBackground>
+		<div className={styles.wrapper}>
+			<OpaqueBackground>
+				<UserSelection formId={1} />
+				<UserSelection formId={2} />
+				<Button />
+			</OpaqueBackground>
+		</div>
+		
 	);
 };
 

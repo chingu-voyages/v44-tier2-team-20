@@ -24,3 +24,10 @@
 	background: #333;
 	box-shadow: 0 0 10px #000;
 }
+
+@media screen and (max-width: 1023px) 
+and (orientation: portrait){
+    .container {
+        width: 100%;
+    }
+}

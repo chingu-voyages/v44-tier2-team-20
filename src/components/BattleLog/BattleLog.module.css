@@ -1,16 +1,10 @@
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
 .wrapper {
-	background-color: rgba(255, 255, 255, 0.6);
 	font-size: 1.5rem;
 	display: flex;
 	flex-direction: column;
-	width: 20.63vw;
-	height: 16.51vh;
+	height: 130px;
+	width: 370px;
+	padding: 8px 18px;
 	overflow-y: scroll;
 }
 
@@ -34,9 +28,8 @@
 
 .wrapper > p {
 	font-weight: 500;
-	margin-left: 22px;
+    font-size: 20px;
 	margin-bottom: 0px;
-	margin-top: 18px;
 }
 
 .container {
@@ -45,6 +38,7 @@
 	background-color: rgba(0, 0, 0, 0.4);
 	color: #fff;
 	margin: 10px 8px;
+	width: 370px;
 }
 
 .results_txt {
