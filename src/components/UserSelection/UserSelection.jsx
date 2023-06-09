@@ -6,7 +6,7 @@ import Dropdown from '../Dropdown/Dropdown';
 import { GameContext } from '../../context/GameContext/GameContext';
 import Bot from '../../context/GameContext/Bot';
 const UserSelection = ({ formId }) => {
-	const { addBot } = useContext(GameContext);
+	const { addBot, gameState } = useContext(GameContext);
 	const [name, setName] = useState('');
 	const [speed, setSpeed] = useState(50);
 	const [value, setValue] = useState(null);
@@ -23,7 +23,7 @@ const UserSelection = ({ formId }) => {
 	}, [name, speed, value, direction, operation]);
 
 	useEffect(() => {
-		if (isFormComplete) {
+		if (isFormComplete && gameState === false) {
 			const bot = new Bot();
 			bot.setName(name);
 			bot.setFormId(formId);
