@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useContext } from 'react';
 import { GameContext } from '../../context/GameContext/GameContext';
 import styles from './BattleLog.module.css';
+import OpaqueBackground from '../OpaqueBackground/OpaqueBackground';
 
 function BatteLog(props) {
 	const { battleLogs } = useContext(GameContext);
@@ -37,10 +38,12 @@ function BatteLog(props) {
 	};
 
 	return window.matchMedia('(max-width: 768px)').matches ? null : (
-		<div className={styles.wrapper} ref={scrollableElement}>
-			<p>Battle Log</p>
-			{renderLogs()}
-		</div>
+		<OpaqueBackground>
+			<div className={styles.wrapper} ref={scrollableElement}>
+				<p>Battle Log</p>
+				{renderLogs()}
+			</div>
+		</OpaqueBackground>
 	);
 }
 export default BatteLog;

@@ -150,6 +150,7 @@ function Arena(props) {
 
 	return (
 		<div className={styles.container}>
+			
 			<div className={styles['grid-container']}>
 				{matrix.map((row, rowIndex) => (
 					<div key={rowIndex} className={styles.row}>

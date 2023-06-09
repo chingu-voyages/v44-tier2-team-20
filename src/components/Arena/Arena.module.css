@@ -7,13 +7,11 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-color: blueviolet;
+  /* background-color: rgb(221, 185, 255); */
 }
 
 .grid-container {
-  /* height: 100%;
-  width: 100%; */
-  /* background-color: aqua; */
+  background-color: rgba(255, 255, 255, 0.6);
   display: grid;
   grid-template-columns: repeat(1, 0.5fr);
   grid-template-rows: repeat(8, 1fr); 
@@ -29,8 +27,8 @@
 
 .cell {
   flex: 1;
-  height: 70px;
-  width: 70px;
+  height: 90px;
+  width: 90px;
 
   border: 1px solid black;
   display: flex;
@@ -52,4 +50,89 @@
 .bot-image {
   max-width: 100%;
   max-height: 100%;
+}
+
+/* Tablets and larger smartphones*/
+@media screen 
+and (min-width: 481px) 
+and (max-width: 768px) {
+  .cell {
+    height: 50px;
+    width: 50px;
+  }
+
+    /* .container__arena {
+        width: 100%;
+        max-height: 400px;
+    }
+
+    .container__arena_square {
+        background-color: aqua;
+    }
+    
+    .container__leaderboard {
+        width: 100%;
+        order: -1;
+        background-color: rgb(221, 221, 221);
+    }
+
+    .container__log {
+        width: 100%;
+        position: absolute;
+        background-color: rgb(221, 221, 221);
+    }
+
+    .container__users {
+        width: 100%;
+        background-color: rgb(221, 221, 221);
+    } */
+}
+
+/* Tablets portrait */
+@media only screen 
+  and (min-width: 768px) 
+  and (max-width: 1024px) 
+  and (orientation: portrait) {
+    /* .cell {
+      height: 90px; works
+      width: 90px;
+    } */
+}
+
+/* Tablets landscape */
+@media only screen 
+  and (min-width: 768px) 
+  and (max-width: 1024px) 
+  and (orientation: landscape) {
+    .cell {
+      height: 45px;
+      width: 45px;
+    }
+}
+
+/* Smartphones landscape */
+@media only screen 
+  and (min-width: 375px) 
+  and (max-width: 812px) 
+  and (orientation: landscape) { 
+    /* .cell {
+      height: 30px;
+      width: 30px;
+    } */
+}
+
+/* smaller smartphones*/
+@media screen and (max-width: 480px) {
+  .cell {
+    height: 40px;
+    width: 40px;
+  }
+}
+
+/* smaller smartphones*/
+@media screen and (max-width: 360px) {
+  .cell {
+    height: 30px;
+    width: 30px;
+  }
 }

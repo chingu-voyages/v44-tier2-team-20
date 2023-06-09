@@ -1,10 +1,54 @@
 .app-container {
     height: 100vh;
     width: 100%;
-    padding: 2%;
     box-sizing: border-box;
     display: flex;
     flex-flow: column wrap;
-    justify-content: space-between;
-    position: relative;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgb(113, 113, 113);
+}
+
+/* Tablets landscape */
+@media only screen 
+and (min-width : 768px) 
+and (max-width : 1023px) 
+and (orientation : landscape) {
+    .app-container {
+        height: auto;
+        width: 100%;
+    }
+}
+
+/* Tablets landscape */
+@media only screen 
+and (min-width : 768px) 
+and (max-width : 1023px) 
+and (orientation : portrait) {
+    .app-container {
+        height: auto;
+        min-height: 100vh;
+        width: 100%;
+    }
+}
+
+/* Smartphone portrait */
+@media only screen 
+  and (max-width: 767px)
+  and (orientation: portrait){ 
+    .app-container {
+        height: auto;
+        min-height: 100vh;
+    }
+}
+
+/* Smartphones landscape */
+@media only screen 
+  and (min-width: 360px) 
+  and (max-width: 767px)
+  and (orientation: landscape){ 
+    .app-container {
+        height: auto;
+        min-height: 100vh;
+    }
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext }  from 'react';
 import styles from './LeaderBoard.module.css'
 import BotStatistics from '../BotStatistics/BotStatistics';
 import { GameContext } from '../../../context/GameContext/GameContext';
+import OpaqueBackground from '../../OpaqueBackground/OpaqueBackground';
 
 const LeaderBoard = () => {
   const { bots } = useContext(GameContext);
@@ -42,15 +43,19 @@ const LeaderBoard = () => {
 
   return (
     <div className={styles.wrapper}>
-        <h2>Leaders</h2>
-        <div className={styles.container}>
-            <div className={styles.container__headings}>
-                <h3>User</h3>
-                <h3>Wins</h3>
-                <h3>Losses</h3>
-            </div>
-            <BotStatistics bots={uniqueBots}/>
+      <OpaqueBackground>
+        <div className={styles.inner_wrapper}>
+          <h3 className={styles.container__title}>Leaders</h3>
+          <div className={styles.container}>
+              <div className={styles.container__headings}>
+                  <h4>User</h4>
+                  <h4>Wins</h4>
+                  <h4>Losses</h4>
+              </div>
+              <BotStatistics bots={uniqueBots}/>
+          </div>
         </div>
+      </OpaqueBackground>
     </div>
   )
 }
