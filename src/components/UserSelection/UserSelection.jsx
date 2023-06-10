@@ -6,7 +6,7 @@ import Dropdown from '../Dropdown/Dropdown';
 import { GameContext } from '../../context/GameContext/GameContext';
 import Bot from '../../context/GameContext/Bot';
 const UserSelection = ({ formId }) => {
-	const { addBot, gameState } = useContext(GameContext);
+	const { addBot } = useContext(GameContext);
 	const [name, setName] = useState('');
 	const [speed, setSpeed] = useState(50);
 	const [value, setValue] = useState(null);
@@ -23,17 +23,18 @@ const UserSelection = ({ formId }) => {
 	}, [name, speed, value, direction, operation]);
 
 	useEffect(() => {
-		if (isFormComplete && gameState === false) {
+		if (isFormComplete) {
 			const bot = new Bot();
 			bot.setName(name);
 			bot.setFormId(formId);
-			bot.setImage(`/bot-${Math.floor(Math.random()) * 10}`);
+			bot.setImage(`./public/bot-${Math.floor(Math.random() * 12) + 1}.png`);
 			bot.setSpeed(Number(speed));
 			bot.setBinaryValue(value);
 			bot.setDirection(direction);
 			bot.setCoordinates(); // Call setCoordinates after setDirection
 			bot.setOperator(operation);
 			addBot(bot);
+			console.log(bot)
 		}
 	}, [isFormComplete, direction, value, speed, direction, name]);
 
