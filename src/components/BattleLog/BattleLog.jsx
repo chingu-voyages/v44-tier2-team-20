@@ -38,12 +38,14 @@ function BatteLog(props) {
 	};
 
 	return window.matchMedia('(max-width: 768px)').matches ? null : (
-		<OpaqueBackground>
-			<div className={styles.wrapper} ref={scrollableElement}>
-				<p>Battle Log</p>
-				{renderLogs()}
-			</div>
-		</OpaqueBackground>
+		<div className={styles.wrapper_main}>
+			<OpaqueBackground>
+				<div className={styles.wrapper} ref={scrollableElement}>
+					<p>Battle Log</p>
+					{renderLogs()}
+				</div>
+			</OpaqueBackground>
+		</div>
 	);
 }
 export default BatteLog;
