@@ -1,25 +1,23 @@
 import React, { useContext, useEffect, useState, useRef } from 'react';
 import { GameContext } from '../../context/GameContext/GameContext';
+import { v4 as uuidv4 } from 'uuid';
 import styles from './Arena.module.css';
 
-function Arena(props) {
-	const { bots, setBots, gameState, setGameState, checkOutcome, updateBotStats, removeBot } = useContext(GameContext);
+function Arena() {
+	const { bots, setBots, gameState, setGameState, checkOutcome, setLogBots, } = useContext(GameContext);
 	const [matrix, setMatrix] = useState([]);
 	const intervalIdsRef = useRef([]);
 
-	const toggleGame = () => {
-		setGameState(!gameState);
-		updateMatrix(bots);
-	};
-
+	
 	const moveBot = (bot) => {
 		setBots((prevBots) => {
 			const updatedBots = prevBots.map((updatedBot) => {
 				if (updatedBot.id === bot.id) {
 					const { rowIndex, columnIndex } = updatedBot.coordinates;
+					const updatedTimestamp = Date.now();
 					let newRow = rowIndex;
 					let newColumn = columnIndex;
-
+	
 					// Update coordinates based on direction
 					switch (bot.direction) {
 						case 'North':
@@ -37,17 +35,15 @@ function Arena(props) {
 						default:
 							break;
 					}
-
+	
 					if (newRow >= 0 && newRow < 8 && newColumn >= 0 && newColumn < 8) {
 						const updatedCoordinates = { rowIndex: newRow, columnIndex: newColumn };
-						const updatedTimestamp = Date.now();
-
-						return { ...updatedBot, coordinates: updatedCoordinates, timestamp: updatedTimestamp };
+	
+						return { ...updatedBot, coordinates: updatedCoordinates, movementId: uuidv4() };
 					} else {
 						// Change bot's direction if it hits the wall
-						console.log('wall');
 						let directions = ['North', 'South', 'East', 'West'];
-
+	
 						switch (`${newRow},${newColumn}`) {
 							case '0,7':
 								directions = ['South', 'West'];
@@ -64,43 +60,63 @@ function Arena(props) {
 							default:
 								break;
 						}
-
+	
 						const newDirection = directions.filter((direction) => direction !== bot.direction);
 						const randomIndex = Math.floor(Math.random() * newDirection.length);
 						const newBotDirection = newDirection[randomIndex];
 						// experimental feature: bots change binary on wall hit, as some game states will only tie (never end)
 						const newBinary = Math.round(Math.random());
-
-						return { ...updatedBot, direction: newBotDirection, binaryValue: newBinary };
+						const botUpdate = { ...updatedBot, direction: newBotDirection, timestamp: updatedTimestamp, binaryValue: newBinary, gameStatus: 'wall' };
+						setLogBots((prevLogs) => [...prevLogs, botUpdate]);
+						return botUpdate;
 					}
 				}
 				return updatedBot;
 			});
-
-			// Updates matrix with new bot positions and checks for winner
+	
 			const winner = checkOutcome(updatedBots[0], updatedBots[1]);
-			console.log(winner);
+			const updatedTimestamp = Date.now();
 			if (winner === 'tie') {
-				updateMatrix(updatedBots);
-				return updatedBots;
+				const updatedBotsWithTieStatus = updatedBots.map((updatedBot) => {
+					if (updatedBot.id === bot.id) {
+						const botUpdate = { ...updatedBot, gameStatus: 'tie' };
+						setLogBots((prevLogs) => [...prevLogs, botUpdate]);
+						return botUpdate;
+					}
+					return updatedBot;
+				});
+				updateMatrix(updatedBotsWithTieStatus);
+				return updatedBotsWithTieStatus;
 			} else if (winner) {
-				const newBots = updatedBots.filter((bot) => bot.id === winner);
-				// Can get these function to work to update bots... Help? lol
-				// updateBotStats(winner, true);
-				// removeBot(winner)
-				setGameState(!gameState);
-				setTimeout(() => {
-					setBots(newBots);
-					updateMatrix(newBots);
-					console.log(bots);
-				}, 500);
-				return updatedBots;
-			} else {
-				updateMatrix(updatedBots);
-				return updatedBots;
-			}
-		});
-	};
+				setGameState(!gameState)
+				const winnerUpdated = updatedBots.map((updatedBot) => {
+					if (updatedBot.id === bot.id) {
+						const botUpdate = {
+							...updatedBot,
+							timestamp: updatedTimestamp,
+							gameStatus: 'winner',
+							wins: updatedBot.wins + 1
+						};
+						return botUpdate;
+					} else {
+						const botUpdate = {
+							...updatedBot,
+							timestamp: updatedTimestamp,
+							gameStatus: 'loser',
+							losses: updatedBot.losses + 1
+						};
+						return botUpdate;
+					}
+				});
+
+        setLogBots((prevLogs) => [...prevLogs, ...winnerUpdated]);
+        return winnerUpdated;
+      } else {
+        updateMatrix(updatedBots);
+        return updatedBots;
+      }
+    });
+  };
 
 	const updateMatrix = (botArray = bots) => {
 		const updatedMatrix = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => null));
@@ -121,7 +137,7 @@ function Arena(props) {
 	};
 
 	useEffect(() => {
-		toggleGame();
+		updateMatrix(bots);
 		const moveBotWithDelay = (bot) => {
 			const intervalId = setInterval(() => {
 				setTimeout(() => moveBot(bot), 500);
@@ -141,12 +157,21 @@ function Arena(props) {
 			bots.forEach((bot) => {
 				moveBotWithDelay(bot);
 			});
+		} else if (!gameState && bots.some(bot => bot.gameStatus === 'winner')) {
+			updateMatrix([]);
+			clearIntervals();
 		} else {
 			clearIntervals();
 		}
 
 		return clearIntervals;
-	}, [gameState, bots]);
+	}, [gameState, bots]); 
+
+	useEffect(() => {
+		if (!gameState) {
+		setLogBots((prevLogs) => [...prevLogs, ...bots]);
+		}
+	}, [gameState])
 
 	return (
 		<div className={styles.container}>

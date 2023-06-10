@@ -27,13 +27,14 @@ const UserSelection = ({ formId }) => {
 			const bot = new Bot();
 			bot.setName(name);
 			bot.setFormId(formId);
-			bot.setImage(`/bot-${Math.floor(Math.random()) * 10}`);
+			bot.setImage(`./public/bot-${Math.floor(Math.random() * 12) + 1}.png`);
 			bot.setSpeed(Number(speed));
 			bot.setBinaryValue(value);
 			bot.setDirection(direction);
 			bot.setCoordinates(); // Call setCoordinates after setDirection
 			bot.setOperator(operation);
 			addBot(bot);
+			console.log(bot)
 		}
 	}, [isFormComplete, direction, value, speed, direction, name]);
 
