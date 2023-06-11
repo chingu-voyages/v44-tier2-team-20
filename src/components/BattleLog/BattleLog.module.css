@@ -1,50 +1,65 @@
 .wrapper {
-	font-size: 1.5rem;
+	font-size: 1.3rem;
 	display: flex;
 	flex-direction: column;
-	height: 130px;
-	width: 370px;
+	align-items:center;
+	color: white;
+	height: 250px;
+	min-height: 120px;
+	width: 395px;
+	background-color: rgba(255, 255, 255, 0.6);
 	padding: 8px 18px;
-	overflow-y: scroll;
 }
 
-.wrapper::-webkit-scrollbar {
+
+.title {
+	text-align: center;
+	color: rgb(0, 0, 0);
+	margin: 1rem 0;
+}
+
+.logs{
+	display: flex;
+	font-size: 0.5rem;
+	flex-direction: column;
+	overflow-y: scroll;
+	background-color: white;
+	height: 160px;
+	width: 350px;
+}
+
+.logs::-webkit-scrollbar {
 	width: 10px;
 	height: 10px;
 }
 
-.wrapper::-webkit-scrollbar-track {
+.logs::-webkit-scrollbar-track {
 	background-color: (255, 255, 255, 0.6);
 }
 
-.wrapper::-webkit-scrollbar-thumb {
+.logs::-webkit-scrollbar-thumb {
 	background-color: rgba(0, 0, 0, 0.4);
 	border-radius: 5px;
 }
 
-.wrapper::-webkit-scrollbar-thumb:hover {
+.logs::-webkit-scrollbar-thumb:hover {
 	background-color: red;
 }
 
-.wrapper > p {
-	font-weight: 500;
-    font-size: 20px;
-	margin-bottom: 0px;
-}
 
 .container {
 	display: flex;
 	flex-direction: column;
-	background-color: rgba(0, 0, 0, 0.4);
-	color: #fff;
 	margin: 10px 8px;
 	width: 370px;
 }
 
-.results_txt {
-	font-size: 1.2rem;
+.status_txt {
+	color: black;
+	font-size: 0.85rem;
+	text-align: center;
 	font-weight: 900;
-	margin: 5px;
+	margin: 5px 5px 5px 0px;
 	padding: 5px;
 	align-self: center;
 	justify-self: center;

@@ -1,51 +1,84 @@
 import React, { useRef, useEffect, useContext } from 'react';
 import { GameContext } from '../../context/GameContext/GameContext';
 import styles from './BattleLog.module.css';
-import OpaqueBackground from '../OpaqueBackground/OpaqueBackground';
 
-function BatteLog(props) {
-	const { battleLogs } = useContext(GameContext);
+function BattleLog() {
+  const { logsBots } = useContext(GameContext);
 
-	// creating reference for wrapper to adjust scroll
-	const scrollableElement = useRef(null);
+  // creating reference for wrapper to adjust scroll
+  const scrollableElement = useRef(null);
 
-	// makes the scroll bar head to bottom on first render and with every new log in array so user doesn't have to scroll down for new result
-	useEffect(() => {
-		if (scrollableElement.current) {
-			scrollableElement.current.scrollTop = scrollableElement.current.scrollHeight - scrollableElement.current.clientHeight;
-		}
-	}, [battleLogs]);
+  // makes the scroll bar head to bottom on first render and with every new log in array so user doesn't have to scroll down for new result
+  useEffect(() => {
+    if (scrollableElement.current) {
+      scrollableElement.current.scrollTop = scrollableElement.current.scrollHeight - scrollableElement.current.clientHeight;
+    }
+  }, [logsBots.length]);
 
-	// maps logs to wrapper
+  // maps logs to wrapper
 	const renderLogs = () => {
-		if (!Array.isArray(battleLogs)) {
+		if (!Array.isArray(logsBots)) {
 			return null;
+		} else {
+			const uniqueLogs = [];
+			const botMessages = logsBots.filter((bot) => {
+				// Check if the bot's movementId already exists in uniqueLogs
+				const isDuplicate = uniqueLogs.some((prevBot) => {
+					return prevBot.movementId === bot.movementId;
+				});
+	
+				if (isDuplicate) {
+					return false;
+				}
+	
+				uniqueLogs.push(bot); // Add the bot to uniqueLogs
+				console.log(uniqueLogs)
+				return true;
+			}).map((bot, index) => {
+				let botResult = '';
+				let botComputation = '';
+	
+				if (bot.gameStatus === 'winner') {
+					botResult = `${bot.name} wins!`;
+					botComputation = `Operator: ${bot.operator} & Value: ${bot.binaryValue}`;
+				} else if (bot.gameStatus === 'loser') {
+					botResult = `${bot.name} loses!`;
+					botComputation = `Operator: ${bot.operator} & Value: ${bot.binaryValue}`;
+				} else if (bot.gameStatus === 'wall') {
+					botResult = `${bot.name} crashed into that wall!`;
+					botComputation = `New Direction: ${bot.direction} & New Value: ${bot.binaryValue}`;
+				} else if (bot.gameStatus === 'tie') {
+					botResult = `${bot.name} tied!`;
+					botComputation = `Operator: ${bot.operator} & Value: ${bot.binaryValue}`;
+				}
+	
+				return (
+					<p key={index} className={styles.status_txt}>
+						<p>{botResult}</p>
+						<p>{botComputation}</p>
+						<p></p>
+					</p>
+				);
+			});
+	
+			return (
+				<div className={styles.container}>
+					{botMessages}
+				</div>
+			);
 		}
-
-		return battleLogs.map((log, index) => (
-			<div key={index} className={styles.container}>
-				<p className={styles.results_txt}>
-					{log.bots[0]} vs. {log.bots[1]} | {log.winner === 'tie' ? 'it was a tie' : `${log.winner} wins`}
-				</p>
-				<p className={styles.computations_txt}>
-					{log.bots[0]}: Binary Value = {log.bot1BinaryValue}, Operator = {log.bot1Operator}
-				</p>
-				<p className={styles.computations_txt}>
-					{log.bots[1]}: Binary Value = {log.bot2BinaryValue}, Operator = {log.bot2Operator}
-				</p>
-			</div>
-		));
 	};
 
-	return window.matchMedia('(max-width: 768px)').matches ? null : (
-		<div className={styles.wrapper_main}>
-			<OpaqueBackground>
-				<div className={styles.wrapper} ref={scrollableElement}>
-					<p>Battle Log</p>
-					{renderLogs()}
-				</div>
-			</OpaqueBackground>
-		</div>
-	);
+  return window.matchMedia('(max-width: 768px)').matches ? null : (
+    <div className={styles.wrapper}>
+      <div className={styles.title}>
+        <p>Battle Log</p>
+      </div>
+      <div className={styles.logs} ref={scrollableElement}>
+        {renderLogs()}
+      </div>
+    </div>
+  );
 }
-export default BatteLog;
+
+export default BattleLog;

@@ -1,5 +1,5 @@
-import React, { createContext, useState } from 'react';
-import Bot from './Bot.js';
+import React from 'react';
+import { createContext, useState } from 'react';
 
 const GameContext = createContext();
 
@@ -9,6 +9,8 @@ const GameProvider = ({ children }) => {
 
 	// State for bots
 	const [bots, setBots] = useState([]);
+
+	const [logsBots, setLogBots] = useState([])
 
 	// Function to add a new bot (id generated outside)
 	const addBot = (bot) => {
@@ -30,22 +32,6 @@ const GameProvider = ({ children }) => {
 	// Function to remove a bot
 	const removeBot = (botId) => {
 		setBots((prevBots) => prevBots.filter((bot) => bot.id !== botId));
-	};
-
-	// Function to update a bot's win/loss count
-	// Works if you create a new bot object, but can't update old...
-	const updateBotStats = (botId, win) => {
-		console.log(botId);
-		console.log(win);
-		setBots((prevBots) =>
-			prevBots.map((bot) => {
-				if (bot.id === botId) {
-					bot.updateStats(win);
-					return bot;
-				}
-				return bot;
-			})
-		);
 	};
 
 	// Updated checkOutcome to determine if bots are in the same spot and returns id instead of Name.
@@ -77,10 +63,10 @@ const GameProvider = ({ children }) => {
 				result = null; //default result
 			}
 
-			// if outcome is true winner is always the first bot, otherwise it's a tie
-			const outcome = result ? firstBot.id : 'tie';
-			return outcome;
-		} else return null;
+	return result ? firstBot.id : 'tie';
+		} else {
+			return null;
+		}
 	};
 
 	// Defining the context values
@@ -89,9 +75,10 @@ const GameProvider = ({ children }) => {
 		setGameState,
 		bots,
 		setBots,
+		logsBots, 
+		setLogBots,
 		addBot,
 		removeBot,
-		updateBotStats,
 		checkOutcome,
 	};
 

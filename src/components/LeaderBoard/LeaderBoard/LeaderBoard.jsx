@@ -8,13 +8,19 @@ const LeaderBoard = () => {
   const { bots } = useContext(GameContext);
   const [uniqueBots, setUniqueBots] = useState([])
 
+  useEffect(() => {
+    console.log(uniqueBots)
+  }, [uniqueBots])
+
   const storeBot = () => {
     bots.forEach(bot => {
       //for the first round when unique bots array is still empty, we copy all the bots
       if (uniqueBots.length === 0) {
+
         setUniqueBots(prevUniqueBots => [...prevUniqueBots, bot]);
-      } else {
-      // every other round we check for the matching names/indexes in bots array
+      } 
+      else {
+      // every next round we check for the matching names/indexes in bots array
         const botIndex = uniqueBots.findIndex(el => el.name === bot.name);
         if (botIndex !== -1) {
           console.log(`bot already exists at index ${botIndex}`);
