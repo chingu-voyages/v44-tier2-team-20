@@ -4,7 +4,7 @@ import { GameContext } from '../../context/GameContext/GameContext';
 import styles from './Button.module.css';
 
 const Button = ({ gameState, setGameState, onClick, width, height, fontSize }) => {
-	
+	const { gameState, setGameState } = useContext(GameContext);
 
 	function handleClick() {
 		// Adding in internal functionality to the button

@@ -23,32 +23,32 @@ const UserSelection = ({ formId, setNewBots }) => {
 
 	useEffect(() => {
 		if (isFormComplete) {
-		  const bot = {
-			name: name,
-			speed: speed,
-			value: value,
-			direction: direction,
-			operation: operation,
-			formId: formId,
-		  };
-	  
-		  setNewBots((prevBots) => {
-			const updatedBots = prevBots.map((existingBot) => {
-			  if (existingBot.formId === bot.formId) {
-				// Update the existing bot's properties
-				return bot;
-			  }
-			  return existingBot; // Keep other bots as they are
+		const bot = {
+				name: name,
+				speed: speed,
+				value: value,
+				direction: direction,
+				operation: operation,
+				formId: formId,
+		};
+
+		setNewBots((prevBots) => {
+				const updatedBots = prevBots.map((existingBot) => {
+					if (existingBot.formId === bot.formId) {
+					// Update the existing bot's properties
+					return bot;
+					}
+			return existingBot; // Keep other bots as they are
 			});
-	  
+	
 			if (updatedBots.some((existingBot) => existingBot.formId === bot.formId)) {
-			  // Bot exists, update the state
-			  return updatedBots;
+				 // Bot exists, update the state
+			return updatedBots;
 			} else {
 			  // Bot doesn't exist, add it to the array
-			  return [...updatedBots, bot];
+			return [...updatedBots, bot];
 			}
-		  });
+		});
 		}
 	  }, [isFormComplete, speed, direction, operation, value, name]);	  
 
@@ -62,7 +62,7 @@ const UserSelection = ({ formId, setNewBots }) => {
 				<div className={styles.dropdownContainer}>
 					<Dropdown label="Value" options={[0, 1]} value={value} onChange={setValue} />
 					<Dropdown label="Direction" options={['North', 'South', 'East', 'West']} value={direction} onChange={setDirection} />
-					<Dropdown label="Operation" options={['AND', 'OR', 'NOR', 'NOT']} value={operation} onChange={setOperation} />
+					<Dropdown label="Operation" options={['AND', 'OR', 'NOR', 'XOR']} value={operation} onChange={setOperation} />
 				</div>
 			</div>
 		</div>
