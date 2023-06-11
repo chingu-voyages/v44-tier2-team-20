@@ -1,3 +1,4 @@
+import React from 'react';
 import { useContext } from 'react';
 import { GameContext } from '../../context/GameContext/GameContext';
 import styles from './Button.module.css';
