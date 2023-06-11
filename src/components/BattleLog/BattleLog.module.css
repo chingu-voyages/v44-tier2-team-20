@@ -1,5 +1,5 @@
 .wrapper {
-	font-size: 1.5rem;
+	font-size: 1.3rem;
 	display: flex;
 	flex-direction: column;
 	align-items:center;
@@ -7,14 +7,14 @@
 	height: 250px;
 	min-height: 120px;
 	width: 395px;
-	background-color: rgba(0, 0, 0, 0.4);
+	background-color: rgba(255, 255, 255, 0.6);
 	padding: 8px 18px;
 }
 
 
 .title {
 	text-align: center;
-	color: red;
+	color: rgb(0, 0, 0);
 	margin: 1rem 0;
 }
 
