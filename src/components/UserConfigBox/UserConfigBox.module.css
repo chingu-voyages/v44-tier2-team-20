@@ -4,8 +4,20 @@
 	}
 }
 
-@media screen and (max-width: 1023px) {
+
+@media screen and (max-width: 1023px) 
+and (orientation: portrait){
 	.wrapper {
 		width: 100%;
 	}
+}
+
+/* Smartphones landscape */
+@media only screen 
+  and (min-width: 375px) 
+  and (max-width: 915px) 
+  and (orientation: landscape) {
+    .wrapper { 
+        margin-top: 10px;
+    }
 }
