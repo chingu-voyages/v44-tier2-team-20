@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
 class Bot {
-	constructor(name, image, binaryValue, operator, speed, direction, formId) {
+	constructor(name, image, binaryValue, operator, speed, direction, gameStatus, formId) {
 		this.id = uuidv4();
 		this.name = name;
 		this.image = image;
@@ -14,16 +14,9 @@ class Bot {
 		this.speed = speed;
 		this.wins = 0;
 		this.losses = 0;
+		this.gameStatus = gameStatus;
 		this.formId = formId;
-	}
-
-	// Method to update win/loss counts
-	updateStats(win) {
-		if (win) {
-			this.wins++;
-		} else {
-			this.losses++;
-		}
+		this.movementId = uuidv4();
 	}
 
 	// Method to update name
@@ -70,8 +63,8 @@ class Bot {
 		const directionTable = {
 			North: { rowIndex: 7, columnIndex: 3 },
 			South: { rowIndex: 0, columnIndex: 3 },
-			East: { rowIndex: 3, columnIndex: 7 },
-			West: { rowIndex: 3, columnIndex: 0 },
+			East: { rowIndex: 3, columnIndex: 0 },
+			West: { rowIndex: 3, columnIndex: 7 },
 		};
 		this.coordinates = directionTable[this.direction];
 	}
@@ -81,9 +74,23 @@ class Bot {
 		this.timestamp = Date.now();
 	}
 
+  // Method to update wins
+  updateWins = () => {
+    this.wins++;
+  };
+
+  // Method to update losses
+  updateLosses = () => {
+    this.losses++;
+  };
+
 	// Method to set speed
 	setSpeed(speed) {
 		this.speed = speed;
+	}
+
+	setGameStatus = (gameStatus) => {
+		this.gameStatus = gameStatus;
 	}
 
 	// Method to retrieve the binary value of the bot (to use in Arena)
