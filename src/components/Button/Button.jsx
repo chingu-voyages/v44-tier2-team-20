@@ -1,9 +1,10 @@
+import React from 'react';
 import { useContext } from 'react';
 import { GameContext } from '../../context/GameContext/GameContext';
 import styles from './Button.module.css';
 
-const Button = ({ onClick, width, height, fontSize }) => {
-	const { gameState, setGameState } = useContext(GameContext);
+const Button = ({ gameState, setGameState, onClick, width, height, fontSize }) => {
+	
 
 	function handleClick() {
 		// Adding in internal functionality to the button
