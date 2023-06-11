@@ -62,7 +62,7 @@ const UserSelection = ({ formId, setNewBots }) => {
 				<div className={styles.dropdownContainer}>
 					<Dropdown label="Value" options={[0, 1]} value={value} onChange={setValue} />
 					<Dropdown label="Direction" options={['North', 'South', 'East', 'West']} value={direction} onChange={setDirection} />
-					<Dropdown label="Operation" options={['AND', 'OR', 'NOR', 'NOT']} value={operation} onChange={setOperation} />
+					<Dropdown label="Operation" options={['AND', 'OR', 'NOR', 'XOR']} value={operation} onChange={setOperation} />
 				</div>
 			</div>
 		</div>
