@@ -1,18 +1,17 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './UserSelection.module.css';
 import Input from '../Input/Input';
 import Slider from '../Slider/Slider';
 import Dropdown from '../Dropdown/Dropdown';
-import { GameContext } from '../../context/GameContext/GameContext';
-import Bot from '../../context/GameContext/Bot';
-const UserSelection = ({ formId }) => {
-	const { addBot } = useContext(GameContext);
+
+const UserSelection = ({ formId, setNewBots }) => {
 	const [name, setName] = useState('');
 	const [speed, setSpeed] = useState(50);
 	const [value, setValue] = useState(null);
 	const [direction, setDirection] = useState(null);
 	const [operation, setOperation] = useState(null);
 	const [isFormComplete, setIsFormComplete] = useState(false);
+
 
 	useEffect(() => {
 		if (name && speed && value !== null && direction && operation) {
@@ -24,19 +23,34 @@ const UserSelection = ({ formId }) => {
 
 	useEffect(() => {
 		if (isFormComplete) {
-			const bot = new Bot();
-			bot.setName(name);
-			bot.setFormId(formId);
-			bot.setImage(`./public/bot-${Math.floor(Math.random() * 12) + 1}.png`);
-			bot.setSpeed(Number(speed));
-			bot.setBinaryValue(value);
-			bot.setDirection(direction);
-			bot.setCoordinates(); // Call setCoordinates after setDirection
-			bot.setOperator(operation);
-			addBot(bot);
-			console.log(bot)
+		  const bot = {
+			name: name,
+			speed: speed,
+			value: value,
+			direction: direction,
+			operation: operation,
+			formId: formId,
+		  };
+	  
+		  setNewBots((prevBots) => {
+			const updatedBots = prevBots.map((existingBot) => {
+			  if (existingBot.formId === bot.formId) {
+				// Update the existing bot's properties
+				return bot;
+			  }
+			  return existingBot; // Keep other bots as they are
+			});
+	  
+			if (updatedBots.some((existingBot) => existingBot.formId === bot.formId)) {
+			  // Bot exists, update the state
+			  return updatedBots;
+			} else {
+			  // Bot doesn't exist, add it to the array
+			  return [...updatedBots, bot];
+			}
+		  });
 		}
-	}, [isFormComplete, direction, value, speed, direction, name]);
+	  }, [isFormComplete, speed, direction, operation, value, name]);	  
 
 	return (
 		<div className={styles.wrapper}>
