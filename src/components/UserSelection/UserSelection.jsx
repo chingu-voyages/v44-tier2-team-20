@@ -4,15 +4,15 @@ import Input from '../Input/Input';
 import Slider from '../Slider/Slider';
 import Dropdown from '../Dropdown/Dropdown';
 
-const UserSelection = ({ formId, setNewBots }) => {
+const UserSelection = ({ formId, setNewBots, setMatchFound, matchFound }) => {
 	const [name, setName] = useState('');
 	const [speed, setSpeed] = useState(50);
 	const [value, setValue] = useState(null);
 	const [direction, setDirection] = useState(null);
 	const [operation, setOperation] = useState(null);
 	const [isFormComplete, setIsFormComplete] = useState(false);
-
-
+	
+ 
 	useEffect(() => {
 		if (name && speed && value !== null && direction && operation) {
 			setIsFormComplete(true);
@@ -33,11 +33,11 @@ const UserSelection = ({ formId, setNewBots }) => {
 		};
 
 		setNewBots((prevBots) => {
-				const updatedBots = prevBots.map((existingBot) => {
-					if (existingBot.formId === bot.formId) {
-					// Update the existing bot's properties
-					return bot;
-					}
+			const updatedBots = prevBots.map((existingBot) => {
+				if (existingBot.formId === bot.formId ) {
+				// Update the existing bot's properties
+				return bot;
+				}
 			return existingBot; // Keep other bots as they are
 			});
 	
@@ -56,7 +56,8 @@ const UserSelection = ({ formId, setNewBots }) => {
 		<div className={styles.wrapper}>
 			<div className={styles.container}>
 				<div>
-					<Input label="Name" value={name} onChange={setName} />
+					<Input label="Name" value={name} onChange={setName} 
+					setMatchFound={setMatchFound} matchFound={matchFound} />
 					<Slider label="Speed" value={speed} onChange={setSpeed} />
 				</div>
 				<div className={styles.dropdownContainer}>
