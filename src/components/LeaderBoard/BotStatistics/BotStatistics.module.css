@@ -1,9 +1,11 @@
 .wrapper {
-    height: auto;
+    height: 75px;
+    padding: 5px 0px;
     width: 100%;
     display: flex;
     flex-flow: column nowrap;
     overflow: scroll;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .container {
@@ -15,11 +17,18 @@
 .container__segment {
     width: 33.3%;
     margin-left: 10px;
-
+    text-align: center;
     color: #fff;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 500;
 	font-size: 14px;
 	line-height: 16px;
 	margin-bottom: 3px;
+}
+
+@media screen and (max-width: 1023px) 
+and (orientation: portrait){
+    .wrapper {
+        height: 70px;
+    }
 }

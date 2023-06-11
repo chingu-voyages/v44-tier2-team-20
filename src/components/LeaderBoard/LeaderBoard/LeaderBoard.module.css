@@ -1,20 +1,21 @@
 .inner_wrapper {
-    height: 130px;
+    height: 120px;
 	width: 370px;
-	padding: 8px 18px;
 }
 
 .container__title {
     width: 100%;
-    margin: 0;
+    line-height: .8;
+    text-align: center;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 1.3rem;
+    color: #000000;
 }
 
 /* Container below the Leaders tab */
 .container {
 	width: 100%;
-	padding: 8px 0px;
+	padding: 10px 0px;
 }
 
 .container__headings {
@@ -24,14 +25,15 @@
 
 .container__headings h4 {
     margin: 0;
-    color: #000000;
+    color: #191919;
 	display: block;
 	font-family: 'Roboto', sans-serif;
-	font-weight: 600;
+	font-weight: 500;
 	font-size: 16px;
 	line-height: 16px;
 	margin-bottom: 3px;
     width: 33.3%;
+    text-align: center;
 }
 
 @media screen and (max-width: 1023px) 
@@ -44,11 +46,9 @@ and (orientation: portrait){
     .inner_wrapper {
         height: 130px;
         width: 100%;
-        padding: 8px 18px;
     }
     .container__title  {
         margin-right: auto;
-        width: 50%;
         padding-bottom: 8px;
     }
 }
@@ -60,7 +60,6 @@ and (orientation: portrait){
   and (orientation: landscape) {
     .wrapper {
         order: -1;
-        width: 100%;
         margin-bottom: 10px;
     }
 }
