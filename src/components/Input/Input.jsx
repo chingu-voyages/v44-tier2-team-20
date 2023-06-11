@@ -2,9 +2,9 @@ import React, { useState, useContext, useEffect } from 'react';
 import styles from './Input.module.css';
 import { GameContext } from '../../context/GameContext/GameContext';
 
-const Input = ({ label, value, onChange }) => {
+const Input = ({ label, value, onChange, setMatchFound }) => {
 	const { bots } = useContext(GameContext);
-	const [matchFound, setMatchFound] = useState(false);
+	
 
 	const handleInputChange = (event) => {
 		onChange(event.target.value);
@@ -22,8 +22,6 @@ const Input = ({ label, value, onChange }) => {
 				{label}
 			</label>
 			<input className={styles.input} name="input" type="text" value={value} onChange={handleInputChange} required />
-
-			<p>{matchFound ? 'This name is already taken, please choose another.' : null}</p>
 		</div>
 	);
 };
