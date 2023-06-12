@@ -1,14 +1,36 @@
-# voyage-tasks
+# Boole Bots
 
-Your project's `readme` is as important to success as your code. For 
-this reason you should put as much care into its creation and maintenance
-as you would any other component of the application.
+## Overview
 
-If you are unsure of what should go into the `readme` let this article,
-written by an experienced Chingu, be your starting point - 
-[Keys to a well written README](https://tinyurl.com/yk3wubft).
+Boole Bots is a game that is not only fun, but also an aid in helping to understand basic Boolean logic. This game has an arena of 8x8 game tiles in which your bots move at random speeds and trajectories. The Bots are assigned boolean values of 0 or 1 and boolean operations - AND, OR, NOR, NOT.
 
-And before we go there's "one more thing"! Once you decide what to include
-in your `readme` feel free to replace the text we've provided here.
+## Features
 
-> Own it & Make it your Own!
+-   Game configuration panel
+-   Leaderboard showing bots ranked by their scores
+-   Game controls
+-   Arena of 8x8 game tiles where the bots battle
+
+## How to Play
+
+1. Configure your bots in the game configuration panel. You can set a unique name, boolean value, operation, speed, and starting direction for each bot.
+2. Click the 'Battle!' button to start the game. The bots will be placed randomly in the arena and start moving based on their configured speed and direction.
+3. Watch the bots battle! When a bot collides with another bot, its boolean operation is applied to both bots' boolean values to determine the outcome of the collision.
+4. The game ends when only one bot remains in the arena. Check the leaderboard to see the final scores!
+
+## Technologies Used
+
+-   React
+-   CSS Modules
+
+## Project Setup
+
+1. Clone the repository to your local machine.
+2. Run `npm install` to install the necessary dependencies.
+3. Run `npm start` to start the development server. The game will be available at `http://localhost:3000`.
+
+## Acknowledgements
+
+-   [George Boole (Wikipedia)](https://en.wikipedia.org/wiki/George_Boole)
+-   [Boolean Algebra (Wikipedia)](https://en.wikipedia.org/wiki/Boolean_algebra)
+-   [Video Game Physics Tutorial - Part I: An Introduction to Rigid Body Dynamics](https://www.toptal.com/game/video-game-physics-part-i-an-introduction-to-rigid-body-dynamics)
