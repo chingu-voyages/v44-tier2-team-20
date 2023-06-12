@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState, useRef } from 'react';
-import { GameContext } from '../../context/GameContext/GameContext';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { GameContext } from '../../context/GameContext/GameContext';
 import styles from './Arena.module.css';
 
 function Arena() {
@@ -8,16 +8,15 @@ function Arena() {
 	const [matrix, setMatrix] = useState([]);
 	const intervalIdsRef = useRef([]);
 
-	
 	const moveBot = (bot) => {
 		setBots((prevBots) => {
 			const updatedBots = prevBots.map((updatedBot) => {
-				if (updatedBot.id === bot.id) {
+				if (updatedBot && updatedBot.id === bot.id) {
 					const { rowIndex, columnIndex } = updatedBot.coordinates;
 					const updatedTimestamp = Date.now();
 					let newRow = rowIndex;
 					let newColumn = columnIndex;
-	
+
 					// Update coordinates based on direction
 					switch (bot.direction) {
 						case 'North':
@@ -35,15 +34,15 @@ function Arena() {
 						default:
 							break;
 					}
-	
+
 					if (newRow >= 0 && newRow < 8 && newColumn >= 0 && newColumn < 8) {
 						const updatedCoordinates = { rowIndex: newRow, columnIndex: newColumn };
-	
-						return { ...updatedBot, coordinates: updatedCoordinates,};
+
+						return { ...updatedBot, coordinates: updatedCoordinates };
 					} else {
 						// Change bot's direction if it hits the wall
 						let directions = ['North', 'South', 'East', 'West'];
-	
+
 						switch (`${newRow},${newColumn}`) {
 							case '0,7':
 								directions = ['South', 'West'];
@@ -60,7 +59,7 @@ function Arena() {
 							default:
 								break;
 						}
-	
+
 						const newDirection = directions.filter((direction) => direction !== bot.direction);
 						const randomIndex = Math.floor(Math.random() * newDirection.length);
 						const newBotDirection = newDirection[randomIndex];
@@ -73,19 +72,19 @@ function Arena() {
 				}
 				return updatedBot;
 			});
-	
+
 			const winner = checkOutcome(updatedBots[0], updatedBots[1]);
 			const updatedTimestamp = Date.now();
 			if (winner === 'tie') {
 				const updatedBotsWithTieStatus = updatedBots.map((updatedBot) => {
-						const botUpdate = { ...updatedBot, gameStatus: 'tie', movementId: uuidv4() };
-						setLogBots((prevLogs) => [...prevLogs, botUpdate]);
-						return botUpdate;
+					const botUpdate = { ...updatedBot, gameStatus: 'tie', movementId: uuidv4() };
+					setLogBots((prevLogs) => [...prevLogs, botUpdate]);
+					return botUpdate;
 				});
 				updateMatrix(updatedBotsWithTieStatus);
 				return updatedBotsWithTieStatus;
 			} else if (winner) {
-				setGameState(!gameState)
+				setGameState(!gameState);
 				const winnerUpdated = updatedBots.map((updatedBot) => {
 					if (updatedBot.id === bot.id) {
 						const botUpdate = {
@@ -93,7 +92,7 @@ function Arena() {
 							timestamp: updatedTimestamp,
 							gameStatus: 'winner',
 							movementId: uuidv4(),
-							wins: updatedBot.wins + 1
+							wins: updatedBot.wins + 1,
 						};
 						return botUpdate;
 					} else {
@@ -102,20 +101,20 @@ function Arena() {
 							timestamp: updatedTimestamp,
 							gameStatus: 'loser',
 							movementId: uuidv4(),
-							losses: updatedBot.losses + 1
+							losses: updatedBot.losses + 1,
 						};
 						return botUpdate;
 					}
 				});
 
-        setLogBots((prevLogs) => [...prevLogs, ...winnerUpdated]);
-        return winnerUpdated;
-      } else {
-        updateMatrix(updatedBots);
-        return updatedBots;
-      }
-    });
-  };
+				setLogBots((prevLogs) => [...prevLogs, ...winnerUpdated]);
+				return winnerUpdated;
+			} else {
+				updateMatrix(updatedBots);
+				return updatedBots;
+			}
+		});
+	};
 
 	const updateMatrix = (botArray = bots) => {
 		const updatedMatrix = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => null));
@@ -156,15 +155,15 @@ function Arena() {
 			bots.forEach((bot) => {
 				moveBotWithDelay(bot);
 			});
-		}  else {
+		} else {
 			clearIntervals();
 		}
 
 		return clearIntervals;
-	}, [gameState, bots]); 
+	}, [gameState, bots]);
 
 	useEffect(() => {
-		if (!gameState && bots.some(bot => bot.gameStatus === 'winner')) {
+		if (!gameState && bots.some((bot) => bot.gameStatus === 'winner')) {
 			const clearIntervals = () => {
 				intervalIdsRef.current.forEach((intervalId) => {
 					clearInterval(intervalId);
@@ -173,26 +172,25 @@ function Arena() {
 			};
 			updateMatrix([]);
 			clearIntervals();
-			setBots([])
+			setBots([]);
 		}
-	}, [gameState])
+	}, [gameState]);
 
 	useEffect(() => {
-		if (gameState && bots.every(bot => bot.gameStatus !== 'winner')){
-			setPause(true)
-			console.log(pause)
-		} else if (!gameState && bots.some(bot => bot.gameStatus === 'winner')) {
-			setPause(false)
-			console.log(pause)
+		if (gameState && bots.every((bot) => bot.gameStatus !== 'winner')) {
+			setPause(true);
+			console.log(pause);
+		} else if (!gameState && bots.some((bot) => bot.gameStatus === 'winner')) {
+			setPause(false);
+			console.log(pause);
 		}
-	}, [gameState])
-
+	}, [gameState]);
 
 	useEffect(() => {
 		if (!gameState) {
-		setLogBots((prevLogs) => [...prevLogs, ...bots]);
+			setLogBots((prevLogs) => [...prevLogs, ...bots]);
 		}
-	}, [gameState])
+	}, [gameState]);
 
 	return (
 		<div className={styles.container}>
