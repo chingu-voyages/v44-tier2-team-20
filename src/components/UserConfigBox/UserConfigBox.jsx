@@ -5,6 +5,21 @@ import Button from '../Button/Button';
 import { GameContext } from '../../context/GameContext/GameContext';
 import Bot from '../../context/GameContext/Bot';
 import styles from './UserConfigBox.module.css';
+import * as images from '../../images/imports';
+
+const imageArray = [
+	images.bot1,
+	images.bot2,
+	images.bot3,
+	images.bot4,
+	images.bot5,
+	images.bot6,
+	images.bot7,
+	images.bot8,
+	images.bot9,
+	images.bot10,
+	images.bot11
+  ];
 
 const UserConfigPanel = () => {
 	const { addBot, pause } = useContext(GameContext);
@@ -28,11 +43,17 @@ const UserConfigPanel = () => {
 			// no duplicates found
 			return true
 		}
- 	} else if (newBots.length == 1) {
-		//not enough bots to start the game
-		return false
+		} else if (newBots.length == 1) {
+			//not enough bots to start the game
+			return false
+		}
 	}
-}
+
+	const randomBotImg = () => {
+		const randomImageIndex = Math.floor(Math.random() * imageArray.length);
+		const randomImage = imageArray[randomImageIndex];
+		return randomImage
+	}
 
 	useEffect(() => {
 	if (gameState === true && pause === false) {
@@ -40,7 +61,7 @@ const UserConfigPanel = () => {
 			const bot = new Bot();
 			bot.setName(el.name);
 			bot.setFormId(el.formId);
-			bot.setImage(`./images/bot-${Math.floor(Math.random() * 10) + 1}.png`);
+			bot.setImage(randomBotImg());
 			bot.setSpeed(Number(el.speed));
 			bot.setBinaryValue(el.value);
 			bot.setDirection(el.direction);
