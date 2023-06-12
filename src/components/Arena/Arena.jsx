@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import styles from './Arena.module.css';
 
 function Arena() {
-	const { bots, setBots, gameState, setGameState, checkOutcome, setLogBots, } = useContext(GameContext);
+	const { bots, setBots, gameState, setGameState, checkOutcome, setLogBots, setPause, pause } = useContext(GameContext);
 	const [matrix, setMatrix] = useState([]);
 	const intervalIdsRef = useRef([]);
 
@@ -39,7 +39,7 @@ function Arena() {
 					if (newRow >= 0 && newRow < 8 && newColumn >= 0 && newColumn < 8) {
 						const updatedCoordinates = { rowIndex: newRow, columnIndex: newColumn };
 	
-						return { ...updatedBot, coordinates: updatedCoordinates, movementId: uuidv4() };
+						return { ...updatedBot, coordinates: updatedCoordinates,};
 					} else {
 						// Change bot's direction if it hits the wall
 						let directions = ['North', 'South', 'East', 'West'];
@@ -66,7 +66,7 @@ function Arena() {
 						const newBotDirection = newDirection[randomIndex];
 						// experimental feature: bots change binary on wall hit, as some game states will only tie (never end)
 						const newBinary = Math.round(Math.random());
-						const botUpdate = { ...updatedBot, direction: newBotDirection, timestamp: updatedTimestamp, binaryValue: newBinary, gameStatus: 'wall' };
+						const botUpdate = { ...updatedBot, direction: newBotDirection, timestamp: updatedTimestamp, movementId: uuidv4(), binaryValue: newBinary, gameStatus: 'wall' };
 						setLogBots((prevLogs) => [...prevLogs, botUpdate]);
 						return botUpdate;
 					}
@@ -78,12 +78,9 @@ function Arena() {
 			const updatedTimestamp = Date.now();
 			if (winner === 'tie') {
 				const updatedBotsWithTieStatus = updatedBots.map((updatedBot) => {
-					if (updatedBot.id === bot.id) {
-						const botUpdate = { ...updatedBot, gameStatus: 'tie' };
+						const botUpdate = { ...updatedBot, gameStatus: 'tie', movementId: uuidv4() };
 						setLogBots((prevLogs) => [...prevLogs, botUpdate]);
 						return botUpdate;
-					}
-					return updatedBot;
 				});
 				updateMatrix(updatedBotsWithTieStatus);
 				return updatedBotsWithTieStatus;
@@ -95,6 +92,7 @@ function Arena() {
 							...updatedBot,
 							timestamp: updatedTimestamp,
 							gameStatus: 'winner',
+							movementId: uuidv4(),
 							wins: updatedBot.wins + 1
 						};
 						return botUpdate;
@@ -103,6 +101,7 @@ function Arena() {
 							...updatedBot,
 							timestamp: updatedTimestamp,
 							gameStatus: 'loser',
+							movementId: uuidv4(),
 							losses: updatedBot.losses + 1
 						};
 						return botUpdate;
@@ -157,15 +156,37 @@ function Arena() {
 			bots.forEach((bot) => {
 				moveBotWithDelay(bot);
 			});
-		} else if (!gameState && bots.some(bot => bot.gameStatus === 'winner')) {
-			updateMatrix([]);
-			clearIntervals();
-		} else {
+		}  else {
 			clearIntervals();
 		}
 
 		return clearIntervals;
 	}, [gameState, bots]); 
+
+	useEffect(() => {
+		if (!gameState && bots.some(bot => bot.gameStatus === 'winner')) {
+			const clearIntervals = () => {
+				intervalIdsRef.current.forEach((intervalId) => {
+					clearInterval(intervalId);
+				});
+				intervalIdsRef.current = [];
+			};
+			updateMatrix([]);
+			clearIntervals();
+			setBots([])
+		}
+	}, [gameState])
+
+	useEffect(() => {
+		if (gameState && bots.every(bot => bot.gameStatus !== 'winner')){
+			setPause(true)
+			console.log(pause)
+		} else if (!gameState && bots.some(bot => bot.gameStatus === 'winner')) {
+			setPause(false)
+			console.log(pause)
+		}
+	}, [gameState])
+
 
 	useEffect(() => {
 		if (!gameState) {

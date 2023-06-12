@@ -1,3 +1,4 @@
+import React from 'react';
 import { createContext, useState } from 'react';
 
 const GameContext = createContext();
@@ -10,6 +11,8 @@ const GameProvider = ({ children }) => {
 	const [bots, setBots] = useState([]);
 
 	const [logsBots, setLogBots] = useState([])
+
+	const [pause, setPause] = useState(false)
 
 	// Function to add a new bot (id generated outside)
 	const addBot = (bot) => {
@@ -79,6 +82,8 @@ const GameProvider = ({ children }) => {
 		addBot,
 		removeBot,
 		checkOutcome,
+		pause, 
+		setPause
 	};
 
 	// Provide the context value to children components
