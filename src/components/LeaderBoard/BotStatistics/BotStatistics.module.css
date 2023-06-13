@@ -9,6 +9,28 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+.wrapper::-webkit-scrollbar {
+	width: 10px;
+}
+
+.wrapper::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+
+.wrapper::-webkit-scrollbar-track {
+	background-color: (255, 255, 255, 0.6);
+}
+
+.wrapper::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.4);
+	border-radius: 5px;
+}
+
+.wrapper::-webkit-scrollbar-thumb:hover {
+	background-color: red;
+}
+
+
 .container {
     display: flex;
     flex-flow: row nowrap;
@@ -21,8 +43,8 @@
     text-align: center;
     color: #fff;
 	font-family: 'Roboto', sans-serif;
-	font-weight: 500;
-	font-size: 14px;
+	font-size: 1rem;
+	font-weight: 600;
 	line-height: 16px;
 	margin-bottom: 3px;
 }
