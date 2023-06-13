@@ -164,7 +164,7 @@ function Arena() {
 	}, [gameState, bots]); 
 
 	useEffect(() => {
-		if (!gameState && bots.some(bot => bot.gameStatus === 'winner')) {
+		if (!gameState && bots.some(bot => bot.gameStatus === 'winner') && bots.some(bot => bot.gameStatus === 'loser')) {
 			const clearIntervals = () => {
 				intervalIdsRef.current.forEach((intervalId) => {
 					clearInterval(intervalId);
@@ -173,7 +173,9 @@ function Arena() {
 			};
 			updateMatrix([]);
 			clearIntervals();
-			setBots([])
+			setTimeout(() => {
+				setBots([])
+			}, 400)
 		}
 	}, [gameState])
 
